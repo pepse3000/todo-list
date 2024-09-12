@@ -1,0 +1,12 @@
+:root {
+    --light-text-color: #9896A3;
+    --light-border-color: #E6E4F0;
+    --low-opacity-text-color: #D3D2DC;
+    --active-color: #5577FF;
+    --reverse-text-color: #F5FFFC;
+    --dark-gray-text-color: #888793;
+}
+
+.main-container {
+    background: #F9F8FF;
+}
