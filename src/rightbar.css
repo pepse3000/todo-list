@@ -5,17 +5,40 @@
     --active-color: #5577FF;
     --reverse-text-color: #F5FFFC;
     --dark-gray-text-color: #888793;
+    --black-text-color: #4F4F4F;
 }
 
 .infobar {
+    display: grid;
+    grid-template-rows: 0.83fr 1fr;
     border-left: 1px solid var(--light-border-color);
-    padding: 20px 25px 0px 25px;
+    padding: 20px 20px 0px 10px;
+}
+
+.todos {
+    grid-area: auto;
+}
+
+.todos-container::-webkit-scrollbar,
+.notes-container::-webkit-scrollbar {
+    display: none;
+}
+
+.notes {
+    grid-area: auto;
+}
+
+.todos-container {
+    overflow: hidden;
+    overflow-y: scroll;
+    height: 36.3vh;
 }
 
 /* Header */
 
-.todos-header {
-    position: relative;
+.todos-header,
+.notes-header {
+    position: sticky;
     display: flex;
     align-items: center;
     gap: 10px;
@@ -29,12 +52,14 @@
     background: url(./icons/Category-1.png);
 }
 
-.todos-header p {
+.todos-header p,
+.notes-header p {
     padding: 0;
     margin: 10px 0;
 }
 
-.todos-header .add {
+.todos-header .add,
+.notes-header .add {
     position: absolute;
     right: 0;
 }
@@ -82,6 +107,12 @@
     box-shadow: inset 0px 0px 0px 0px;
 }
 
+.checked {
+    transition: 0.3s;
+    color: var(--active-color);
+    text-decoration: line-through;
+}
+
 .todo-status.status-checked:hover {
     background-size: contain;
     background-color: var(--active-color);
@@ -99,6 +130,8 @@
 .date {
     position: absolute;
     right: 0;
+    font-size: 12px;
+    color: #BBBABE;
 }
 
 
@@ -177,4 +210,88 @@
 .low {
     background: #71C2FD30;
     color: #71C2FD;
+}
+
+/* Notes */
+.notes {
+    margin: 0;
+    top: -5.5rem;
+}
+
+.notes-container {
+    overflow: hidden;
+    overflow-y: scroll;
+    max-height: 430px;
+}
+
+.notes .add span {
+    position: absolute;
+    top: -6px;
+}
+
+.notes .icon-holder {
+    background: url(./icons/Edit-Square.png);
+}
+
+.note-element {
+    position: relative;
+    border: 1px solid var(--light-border-color);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0px 5px 10px -7px #4F4F4F50;
+    margin: 15px 0;
+}
+
+.note-element .icon-holder {
+    background: url(./icons/Paper.png);
+    background-repeat: no-repeat;
+}
+
+.icon-holder-settings {
+    width: 25px;
+    height: 4px;
+    background: url(./icons/dots.png);
+    background-repeat: no-repeat;
+    opacity: 0.7;
+}
+
+.icon-holder-settings:hover {
+    opacity: 1;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.note-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.note-header .date {
+    left: 15%;
+}
+
+.note-content {
+    display: flex;
+    flex-direction: column;
+    text-align: justify;
+}
+
+.content-header {
+    color: var(--black-text-color);
+    margin-bottom: 10px;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.main-content {
+    color: #999999;
+    font-size: 14px;
+}
+
+.note-tags {
+    display: flex;
+    margin-top: 10px;
+    font-size: 12px;
 }
