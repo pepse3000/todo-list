@@ -10,10 +10,10 @@
         <div class="sidebar">
             <div class="logo">
                 <div class="logo-holder"></div>
-                <h1>Todo App</h1>
+                <h1>TodoApp</h1>
             </div>
             <div class="sidebar-elements">
-                <button class="side-btn">
+                <button class="side-btn active">
                     <div class="icon-holder"></div>
                     <span>Today</span>
                 </button>
@@ -37,9 +37,16 @@
             <div class="sidebar-projects">
                 <div class="projects-header">
                     <p>Projects</p>
-                    <button class="add" id="add-project"></button>
+                    <button class="add" id="add-project">
+                        <span>+</span>
+                    </button>
                 </div>
                 <div class="projects-container">
+                    <div class="project-element">
+                        <div class="img-holder"></div>
+                        <p>Cloth</p>
+                        <p class="number">23</p>
+                    </div>
                     <div class="project-element">
                         <div class="img-holder"></div>
                         <p>Cloth</p>
@@ -50,20 +57,32 @@
             <div class="sidebar-tasks">
                 <div class="tasks-header">
                     <p>Tasks</p>
-                    <button class="add" id="add-task"></button>
+                    <button class="add" id="add-task">
+                        <span>+</span>
+                    </button>
                 </div>
                 <div class="tasks-container">
                     <div class="task-element">
-                        <div class="icon-holder"></div>
+                        <div class="img-holder"></div>
                         <p>Manage Finances</p>
-                        <p>52</p>
+                        <p class="number">52</p>
                     </div>
                     <div class="task-element">
-                        <div class="icon-holder"></div>
+                        <div class="img-holder"></div>
                         <p>Advertise Website</p>
-                        <p>5</p>
+                        <p class="number">5</p>
                     </div>
                 </div>
+            </div>
+            <div class="account-manager">
+                <div class="avatar-holder">
+                    <div class="online-status"></div>
+                </div>
+                <div class="account-info">
+                    <p class="account-name">Muhammed Ali</p>
+                    <p class="account-text">Free Account</p>
+                </div>
+                <div class="icon-holder"></div>
             </div>
         </div>
     </div>
