@@ -1,5 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
 
+:root {
+    --light-text-color: #9896A3;
+    --light-border-color: #E6E4F0;
+    --low-opacity-text-color: #D3D2DC;
+    --active-color: #5577FF;
+    --reverse-text-color: #F5FFFC;
+    --dark-gray-text-color: #888793;
+}
+
 * {
     font-family: "Plus Jakarta Sans", sans-serif;
     font-optical-sizing: auto;
@@ -7,10 +16,308 @@
     font-style: normal;
 }
 
+body {
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
 /* Sidebar */
 
 .sidebar {
     display: flex;
     flex-direction: column;
-    padding: 10px;
+    padding: 25px 25px 0px 25px;
+    width: 240px;
+    height: 100vh;
+    margin-bottom: 0;
+    border-right: 1px solid var(--light-border-color);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding-left: 5px;
+}
+
+.logo h1 {
+    font-size: 26px;
+    font-weight: 500;
+}
+
+.logo-holder {
+    width: 40px;
+    height: 40px;
+    background: url(./logo/logo.png);
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+.sidebar-elements {
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-elements button {
+    color: var(--light-text-color);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: 0;
+    border: 0;
+    text-align: left;
+    font-size: 16px;
+    padding: 15px;
+    margin-bottom: 5px;
+    border-radius: 10px;
+}
+
+
+
+.sidebar-elements button:hover {
+    background: var(--active-color);
+    color: var(--reverse-text-color);
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+.icon-holder {
+    width: 19px;
+    height: 19px;
+    background-position: center;
+}
+
+button:nth-child(1) .icon-holder {
+    background: url(./icons/Category.png);
+}
+
+button:nth-child(2) .icon-holder {
+    background: url(./icons/Calendar.png);
+    background-repeat: no-repeat;
+}
+
+button:nth-child(3) .icon-holder {
+    background: url(./icons/Paper.png);
+    background-repeat: no-repeat;
+}
+
+button:nth-child(4) .icon-holder {
+    background: url(./icons/Activity.png);
+}
+
+button:nth-child(5) .icon-holder {
+    background: url(./icons/Folder.png);
+}
+
+button:nth-child(5) {
+    margin-bottom: 25px;
+}
+
+/* Hover Background Change */
+
+button:nth-child(1):hover .icon-holder {
+    background: url(./icons/category-hover.png);
+}
+
+button:nth-child(2):hover .icon-holder {
+    background: url(./icons/calendar-hover.png);
+    background-repeat: no-repeat;
+}
+
+button:nth-child(3):hover .icon-holder {
+    background: url(./icons/paper-hover.png);
+    background-repeat: no-repeat;
+}
+
+button:nth-child(4):hover .icon-holder {
+    background: url(./icons/activity-hover.png);
+}
+
+button:nth-child(5):hover .icon-holder {
+    background: url(./icons/folder-hover.png);
+}
+
+/* Active buttons config */
+
+button:nth-child(1).active .icon-holder {
+    background: url(./icons/category-hover.png);
+}
+
+button:nth-child(1).active {
+    background: var(--active-color);
+    color: var(--reverse-text-color);
+}
+
+button:nth-child(2).active .icon-holder {
+    background: url(./icons/calendar-hover.png);
+}
+
+button:nth-child(2).active {
+    background: var(--active-color);
+    color: var(--reverse-text-color);
+}
+
+button:nth-child(3).active .icon-holder {
+    background: url(./icons/paper-hover.png);
+}
+
+button:nth-child(3).active {
+    background: var(--active-color);
+    color: var(--reverse-text-color);
+}
+
+button:nth-child(4).active .icon-holder {
+    background: url(./icons/activity-hover.png);
+}
+
+button:nth-child(4).active {
+    background: var(--active-color);
+    color: var(--reverse-text-color);
+}
+
+button:nth-child(5).active .icon-holder {
+    background: url(./icons/folder-hover.png);
+}
+
+button:nth-child(5).active {
+    background: var(--active-color);
+    color: var(--reverse-text-color);
+}
+
+/* Add button */
+.add {
+    position: relative;
+    width: 17px;
+    height: 17px;
+    border: 0;
+    padding: 0;
+    background-color: #5577FF40;
+    border-radius: 4px;
+}
+
+.add span {
+    position: absolute;
+    padding: 0.27rem;
+    top: -40%;
+    left: 0;
+    color: var(--active-color);
+    font-weight: 700;
+}
+
+.add:hover {
+    cursor: pointer;
+    background: var(--active-color);
+    transition: 0.2s;
+}
+
+.add:hover span {
+    color: var(--reverse-text-color);
+}
+
+/*  Projects */
+.projects-header,
+.tasks-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+    text-transform: uppercase;
+    color: var(--low-opacity-text-color);
+    font-size: 14px;
+    border-top: 1px solid var(--light-border-color);
+}
+
+.projects-header p {
+    font-weight: 300;
+}
+
+/* Projects Elements */
+
+.project-element,
+.task-element {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 0 10px 10px;
+}
+
+.project-element p,
+.task-element p {
+    margin: 0;
+    color: var(--dark-gray-text-color);
+    font-weight: 400;
+}
+
+.project-element:nth-last-child(1) {
+    margin-bottom: 15px;
+}
+
+.img-holder {
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    background: #FD71AF40;
+}
+
+.number {
+    position: absolute;
+    right: 5%;
+}
+
+/* Profile or account */
+
+.account-manager {
+    margin-top: 120px;
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid var(--light-border-color);
+    padding: 7px;
+    border-radius: 10px;
+}
+
+.online-status {
+    position: absolute;
+    background: #00B884;
+    width: 15px;
+    height: 15px;
+    border: 3px solid white;
+    border-radius: 5px;
+    bottom: -5px;
+    right: -5px;
+}
+
+.account-manager p {
+    margin: 0;
+}
+
+.avatar-holder {
+    position: relative;
+    background: black;
+    width: 60px;
+    height: 60px;
+    border-radius: 10px;
+    background: url(./avatar/avatar.png);
+    background-size: 60px;
+}
+
+.account-text {
+    color: var(--light-text-color);
+}
+
+.account-manager .icon-holder {
+    background: url(./icons/Setting.png);
+    opacity: 0.7;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    margin: 0 7px;
+}
+
+.account-manager .icon-holder:hover {
+    transition: 0.2s;
+    opacity: 0.9;
 }
