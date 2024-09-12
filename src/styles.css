@@ -17,9 +17,14 @@
 }
 
 body {
-    display: flex;
     margin: 0;
     padding: 0;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 1fr 4fr 1.3fr;
+    grid-template-rows: 1fr;
 }
 
 /* Sidebar */
@@ -28,8 +33,7 @@ body {
     display: flex;
     flex-direction: column;
     padding: 25px 25px 0px 25px;
-    width: 240px;
-    height: 100vh;
+    grid-area: 1 / 1 / 1 / 1;
     margin-bottom: 0;
     border-right: 1px solid var(--light-border-color);
 }
@@ -73,8 +77,6 @@ body {
     margin-bottom: 5px;
     border-radius: 10px;
 }
-
-
 
 .sidebar-elements button:hover {
     background: var(--active-color);
@@ -241,7 +243,16 @@ button:nth-child(5).active {
     display: flex;
     align-items: center;
     gap: 8px;
-    padding: 5px 0 10px 10px;
+    padding: 7px 0 7px 10px;
+    border-radius: 10px;
+    margin-top: 3px;
+}
+
+.project-element:hover,
+.task-element:hover {
+    background: #F8F8F8;
+    transition: 0.2s;
+    cursor: pointer;
 }
 
 .project-element p,
@@ -270,7 +281,7 @@ button:nth-child(5).active {
 /* Profile or account */
 
 .account-manager {
-    margin-top: 120px;
+    margin-top: 6rem;
     display: flex;
     position: relative;
     justify-content: space-between;
@@ -278,6 +289,7 @@ button:nth-child(5).active {
     border: 1px solid var(--light-border-color);
     padding: 7px;
     border-radius: 10px;
+    margin-bottom: 16px;
 }
 
 .online-status {
