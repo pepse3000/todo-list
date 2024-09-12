@@ -1,0 +1,180 @@
+:root {
+    --light-text-color: #9896A3;
+    --light-border-color: #E6E4F0;
+    --low-opacity-text-color: #D3D2DC;
+    --active-color: #5577FF;
+    --reverse-text-color: #F5FFFC;
+    --dark-gray-text-color: #888793;
+}
+
+.infobar {
+    border-left: 1px solid var(--light-border-color);
+    padding: 20px 25px 0px 25px;
+}
+
+/* Header */
+
+.todos-header {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid var(--light-border-color);
+}
+
+.todos-header .icon-holder {
+    width: 20px;
+    height: 20px;
+    background: url(./icons/Category-1.png);
+}
+
+.todos-header p {
+    padding: 0;
+    margin: 10px 0;
+}
+
+.todos-header .add {
+    position: absolute;
+    right: 0;
+}
+
+/* Todos Elements */
+
+.todo-element {
+    display: flex;
+    flex-direction: column;
+    padding: 5px 10px;
+    background: #F9F8FF;
+    border-radius: 15px;
+    border: 1px solid var(--light-border-color);
+    margin-bottom: 5px;
+}
+
+.todo-element p {
+    margin: 10px 0px;
+}
+
+.task-main-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.todo-status {
+    width: 15px;
+    height: 15px;
+    border-radius: 3px;
+    box-shadow: inset 0px 0px 0px 2px #BBBBBE;
+}
+
+.todo-status:hover {
+    transition: 0.2s;
+    cursor: pointer;
+    background: #BBBBBE40;
+}
+
+.todo-status.status-checked {
+    outline: 0;
+    background-color: var(--active-color);
+    background: url(./icons/checkmark.png);
+    background-size: contain;
+    box-shadow: inset 0px 0px 0px 0px;
+}
+
+.todo-status.status-checked:hover {
+    background-size: contain;
+    background-color: var(--active-color);
+    background: url(./icons/checkmark.png);
+    opacity: 0.7;
+}
+
+.task-sub-info {
+    position: relative;
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+}
+
+.date {
+    position: absolute;
+    right: 0;
+}
+
+
+/* tags */
+
+.tag {
+    margin-right: 5px;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-weight: 700;
+}
+
+.tag:hover {
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+.tg-blue {
+    background: #49CCF930;
+    color: #49CCF9;
+}
+
+.tg-red {
+    background: #FD71AF30;
+    color: #FD71AF;
+}
+
+.tg-green {
+    background: #00B88430;
+    color: #00B884;
+}
+
+.tg-yellow {
+    background: #FFC80030;
+    color: #FFC800;
+}
+
+/* Priority */
+
+.priority {
+    position: relative;
+    height: 15px;
+    width: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    padding: 4px;
+}
+
+.priority:hover {
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+.priority span {
+    font-weight: 700;
+}
+
+.priority.relative span {
+    position: absolute;
+    font-weight: 700;
+    left: 0.4rem;
+}
+
+.max {
+    background: #FD717130;
+    color: #FD7171;
+}
+
+.medium {
+    background: #FDC57130;
+    color: #FDC571;
+}
+
+.low {
+    background: #71C2FD30;
+    color: #71C2FD;
+}
