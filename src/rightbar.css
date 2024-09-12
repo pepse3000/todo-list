@@ -248,10 +248,11 @@
 }
 
 .icon-holder-settings {
-    width: 25px;
-    height: 4px;
+    width: 40px;
+    height: 15px;
     background: url(./icons/dots.png);
     background-repeat: no-repeat;
+    background-position: center;
     opacity: 0.7;
 }
 
@@ -288,6 +289,8 @@
 .main-content {
     color: #999999;
     font-size: 14px;
+    max-height: 150px;
+    overflow: hidden;
 }
 
 .note-tags {
