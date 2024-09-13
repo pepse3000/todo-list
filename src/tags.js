@@ -1,7 +1,9 @@
 import { Projects } from "./projects";
+import { Tasks } from "./tasks.js";
 
 export const Tags = (function() {
     let tagsArray = [];
+    let tasksArray = Tasks.tasksArray;
     let projectsArray = Projects.projectsArray;
 
     const tagTemplate = {   
@@ -9,6 +11,7 @@ export const Tags = (function() {
         "tagName": "",
         "color": "",
         "appendedProjects": [],
+        "appendedTasks": [],
     }
 
     const tagsColors = {
@@ -21,8 +24,8 @@ export const Tags = (function() {
     }
 
     const countTagUsage = function(tag) {
-        let tagsCount = 0;
         let appendedProjects = [];
+        let appendedTasks = [];
 
         projectsArray.forEach(project => {
             if (project["tags"].includes(tag)) {
@@ -30,16 +33,25 @@ export const Tags = (function() {
             }
         })
 
-        return appendedProjects;
+        tasksArray.forEach(task => {
+            if (task["tags"].includes(tag)) {
+                appendedTasks.push(task["taskId"]);
+            }
+        })
+
+        return [ appendedProjects, appendedTasks ];
     }
 
     const createTag = function(array, tagName, color) {
         let newTag = { ...tagTemplate };
-        
+
         newTag.tagId = tagsArray.length + 1;
         newTag.tagName = tagName;
         newTag.color = color;
-        newTag.appendedProjects = countTagUsage(newTag.tagName);
+
+        let projectAndTaskTagCount = countTagUsage(newTag.tagName);
+        newTag.appendedProjects = projectAndTaskTagCount[0];
+        newTag.appendedTasks = projectAndTaskTagCount[1];
 
         array.push(newTag);
         saveToLocalStorage();
