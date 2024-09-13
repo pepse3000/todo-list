@@ -272,18 +272,6 @@ button:nth-child(5).active {
     height: 40px;
 }
 
-#p1 .img-holder {
-    background: url(./proj_avatars/1.png);
-    background-size: contain;
-    background-color: #1a1a1a;
-}
-
-#p2 .img-holder {
-    background: url(./proj_avatars/2.png);
-    background-size: contain;
-    background-color: #fff565;
-}
-
 #t1 .img-holder {
     background: #FD71AF;
 }
