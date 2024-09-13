@@ -23,7 +23,7 @@ body {
 
 .container {
     display: grid;
-    grid-template-columns: 1fr 4fr 1.3fr;
+    grid-template-columns: 1.5fr 3.3fr 2fr;
     grid-template-rows: 1fr;
 }
 
@@ -47,6 +47,7 @@ body {
 }
 
 .logo h1 {
+    color: #1b1b1b;
     font-size: 26px;
     font-weight: 500;
 }
