@@ -4,11 +4,13 @@ import "./mainside.css";
 
 import { Projects } from "./projects.js";
 import { Tasks } from "./tasks.js";
-
+import { DOMSideGenerator } from "./domgenerator.js";
 
 let projectManager = Projects;
 let taskManager = Tasks;
 
-console.log(taskManager.tasksArray)
-console.log(projectManager.projectsArray)
+
 taskManager.appendTasks();
+DOMSideGenerator.createProjects();
+
+console.log(projectManager.projectsArray)
