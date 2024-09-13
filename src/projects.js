@@ -1,5 +1,13 @@
 import avatar1 from './proj_avatars/1.png';
 import avatar2 from './proj_avatars/2.png';
+import avatar3 from './proj_avatars/3.png';
+import avatar4 from './proj_avatars/4.png';
+import avatar5 from './proj_avatars/5.png';
+import avatar6 from './proj_avatars/6.png';
+import avatar7 from './proj_avatars/7.png';
+import avatar8 from './proj_avatars/8.png';
+import avatar9 from './proj_avatars/9.png';
+import avatar10 from './proj_avatars/10.png';
 
 export const Projects = (function() {
     let projectsArray = [];
@@ -21,6 +29,14 @@ export const Projects = (function() {
     const avatarUrls = [
         avatar1,
         avatar2,
+        avatar3,
+        avatar4,
+        avatar5,
+        avatar6,
+        avatar7,
+        avatar8,
+        avatar9,
+        avatar10
     ]
 
     const avatarBackgroundColors = [
@@ -63,7 +79,7 @@ export const Projects = (function() {
 
         let imageUrl = avatarUrls[Math.floor(Math.random()*avatarUrls.length)];
         newProject.avatar = `url(${imageUrl})`;
-        let backgroundColor = avatarBackgroundColors[Math.round(Math.random()*avatarBackgroundColors.length - 1)];
+        let backgroundColor = avatarBackgroundColors[Math.round(Math.random()*avatarBackgroundColors.length)];
         newProject.background = backgroundColor;
         
         array.push(newProject);
@@ -90,7 +106,7 @@ export const Projects = (function() {
                 projectsArray,
                 "Gamer Boy",
                 "A gaming project targeting young gamers",
-                [],
+                ["Shopping"],
                 "high",
                 "Gamer Boy is an online multiplayer gaming platform designed to engage young gamers with a variety of mini-games and competitive tournaments.",
                 "2024-09-13",
