@@ -1,12 +1,13 @@
 import { Projects } from "./projects.js";
 
-export const ProjectTasks = (function() {
+export const Tasks = (function() {
     let tasksArray = [];
     const projectArray = Projects.projectsArray;
 
     const taskTemplate = {   
         "taskId": 0,
         "appendProjectName": "",
+        "appendProject": "",
         "appendProjectId": "",
         "taskName": "",
         "tags": [],
@@ -28,8 +29,12 @@ export const ProjectTasks = (function() {
     ) {
         let newTask = { ...taskTemplate };
 
-        newTask.appendProjectName = projectArray[appendProjectId - 1]["projectName"];
-        newTask.appendProjectId = appendProjectId;
+        if (appendProjectId) {
+            newTask.appendProjectName = projectArray[appendProjectId - 1]["projectName"];
+            newTask.appendProject = projectArray[appendProjectId - 1];
+            newTask.appendProjectId = appendProjectId;
+        }
+
         newTask.taskName = taskName;
         newTask.priority = priority;
         newTask.createDate = createDate;
@@ -37,7 +42,7 @@ export const ProjectTasks = (function() {
         newTask.tags = tags;
         newTask.status = status;
 
-        newTask.taskId = array.length + 1;
+        newTask.taskId = array.length + 1; 
     
         array.push(newTask);
         saveToLocalStorage();
@@ -57,13 +62,21 @@ export const ProjectTasks = (function() {
         localStorage.setItem("tasksArray", JSON.stringify(tasksArray));
     }
 
+    const getCompletedTasks = function() {
+        return tasksArray.filter(task => task.status == "done");
+    }
+
+    const getUncompletedTasks = function() {
+        return tasksArray.filter(task => task.status == "open" || task.status == "in_progress");
+    }
+
     const createFirstLoadTasks = (function() {
         if (!localStorage.getItem("tasksArray")) {
             createTask(
                 tasksArray,          
                 1,                      
                 "Set up multiplayer",    
-                ["networking", "backend"], 
+                ["Selfcare"], 
                 "medium",                
                 "2024-09-15",            
                 "2024-11-01",            
@@ -74,7 +87,7 @@ export const ProjectTasks = (function() {
                 tasksArray,           
                 1,                      
                 "Set up multiplayer",    
-                ["networking", "backend"], 
+                ["Economic", "Shopping"], 
                 "medium",                
                 "2024-09-15",            
                 "2024-11-01",            
@@ -85,8 +98,19 @@ export const ProjectTasks = (function() {
                 tasksArray,           
                 2,                      
                 "Get solution",    
-                ["selfcare"], 
+                ["Selfcare"], 
                 "high",                
+                "2024-09-15",            
+                "2024-11-01",            
+                "open"             
+            );
+
+            createTask(
+                tasksArray,   
+                "",                      
+                "Pay $1 to Odin Project",    
+                ["Finance"], 
+                "medium",                
                 "2024-09-15",            
                 "2024-11-01",            
                 "open"             
@@ -100,10 +124,12 @@ export const ProjectTasks = (function() {
     })();
 
     return { 
+        tasksArray, 
         createFirstLoadTasks, 
         appendTasksFirstLoad, 
         createTask, 
-        tasksArray, 
-        saveToLocalStorage 
+        saveToLocalStorage,
+        getCompletedTasks,
+        getUncompletedTasks,
     }
 })();
