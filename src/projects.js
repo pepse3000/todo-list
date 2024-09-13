@@ -2,7 +2,7 @@ import avatar1 from './proj_avatars/1.png';
 import avatar2 from './proj_avatars/2.png';
 
 export const Projects = (function() {
-    const projectsArray = [];
+    let projectsArray = [];
 
     const projectTemplate = {
         "projectId": 0,
@@ -14,6 +14,7 @@ export const Projects = (function() {
         "created": "",
         "deadline": "",
         "avatar": "",
+        "background": "",
         "assignedTasks": []
     }
 
@@ -28,6 +29,10 @@ export const Projects = (function() {
         "#0f1120", // black
         "#4d515c", // gray
     ]
+
+    const saveToLocalStorage = function() {
+        localStorage.setItem("projectsArray", JSON.stringify(projectsArray));
+    }
 
     const createProject = function(
         array,
@@ -58,8 +63,12 @@ export const Projects = (function() {
 
         let imageUrl = avatarUrls[Math.floor(Math.random()*avatarUrls.length)];
         newProject.avatar = `url(${imageUrl})`;
-    
+        let backgroundColor = avatarBackgroundColors[Math.round(Math.random()*avatarBackgroundColors.length - 1)];
+        newProject.background = backgroundColor;
+        
         array.push(newProject);
+        saveToLocalStorage();
+
     }
 
     const redactVariable = function(projectId, variable, value) {
@@ -76,7 +85,7 @@ export const Projects = (function() {
     }
 
     const createFirstLoadProjects = (function() {
-        if (!localStorage.getItem("projectArray")) {
+        if (!localStorage.getItem("projectsArray")) {
             createProject(
                 projectsArray,
                 "Gamer Boy",
@@ -99,9 +108,15 @@ export const Projects = (function() {
                 "2025-03-01",
             )
         } else {
-            projectsArray = JSON.parse(localStorage.getItem("projectArray"));
+            projectsArray = JSON.parse(localStorage.getItem("projectsArray"));
         }
     })();
 
-    return { createProject, redactVariable, avatarBackgroundColors, projectsArray }
+    return { 
+        createProject, 
+        redactVariable, 
+        avatarBackgroundColors, 
+        projectsArray,
+        saveToLocalStorage
+     }
 })();
