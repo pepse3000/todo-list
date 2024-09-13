@@ -1,9 +1,11 @@
 import { Projects } from "./projects.js";
-import { Tasks } from "./tasks.js";
+import { ProjectTasks } from "./tasks.js";
+import { Tags } from "./tags.js";
 
 export const DOMSideGenerator = (function() {
     const projectsArray = Projects.projectsArray;
-    const tasksArray = Tasks.tasksArray;
+    const tagsArray = Tags.tagsArray;
+    const tasksArray = ProjectTasks.tasksArray;
     const avatarBackgroundColors = Projects.avatarBackgroundColors;
 
     const createProjects = (function() {
@@ -17,13 +19,15 @@ export const DOMSideGenerator = (function() {
                 let projectName = document.createElement("p");
                 let projectNumber = document.createElement("p");
 
-                projectElement.id = project["projectId"];
+                projectElement.id = `p${project["projectId"]}`;
                 projectElement.classList.add("project-element");
 
                 imgHolder.classList.add("img-holder");
                 imgHolder.style.background = project["avatar"];
                 imgHolder.style.backgroundColor = project["background"];
                 imgHolder.style.backgroundSize = "cover";
+                imgHolder.style.backgroundRepeat = "no-repeat";
+                imgHolder.style.backgroundPosition = "center";
 
                 projectName.innerText = project["projectName"];
 
@@ -40,7 +44,34 @@ export const DOMSideGenerator = (function() {
     });
 
     const createTags = (function() {
+        if (tagsArray) {
+            let tagsContainer = document.querySelector(".tags-container");
+            tagsContainer.innerHTML = "";
 
+            tagsArray.forEach(tag => {
+                let tagElement = document.createElement("div");
+                let imgHolder = document.createElement("div");
+                let tagName = document.createElement("p");
+                let tagNumber = document.createElement("p");
+
+                tagElement.classList.add("tag-element");
+                tagElement.id = `t${tag["tagId"]}`;
+
+                imgHolder.classList.add("img-holder");
+                imgHolder.style.background = tag["color"];
+
+                tagName.textContent = tag["tagName"];
+
+                tagNumber.classList.add("number");
+                tagNumber.textContent = tag["appendedProjects"].length;
+
+                tagElement.appendChild(imgHolder);
+                tagElement.appendChild(tagName);
+                tagElement.appendChild(tagNumber);
+
+                tagsContainer.appendChild(tagElement);
+            })
+        }
     })();
 
     const createTodos = (function() {
