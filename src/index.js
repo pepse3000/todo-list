@@ -3,12 +3,18 @@ import "./rightbar.css";
 import "./mainside.css";
 
 import { Projects } from "./projects.js";
-import { ProjectTasks } from "./tasks.js";
+import { Tasks } from "./tasks.js";
 import { DOMSideGenerator } from "./domgenerator.js";
+import { ButtonAssigner } from "./buttonassigner.js";
 import { Tags } from "./tags.js";
 
 let projectManager = Projects;
-let taskManager = ProjectTasks;
+let taskManager = Tasks;
 let tagManager = Tags;
 
 DOMSideGenerator.createProjects();
+DOMSideGenerator.createTags();
+DOMSideGenerator.createTodos();
+ButtonAssigner.assignMenuButtons();
+
+console.log(taskManager.tasksArray);
