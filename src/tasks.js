@@ -9,7 +9,7 @@ export const Tasks = (function() {
         "appendProjectName": "",
         "appendProjectId": "",
         "taskName": "",
-        "tags": "",
+        "tags": [],
         "priority": "",
         "createDate": "",
         "dueDate": "", 
@@ -18,7 +18,6 @@ export const Tasks = (function() {
 
     const createTask = function(
         array,
-        appendProjectName,
         appendProjectId,
         taskName,
         tags,
@@ -29,7 +28,7 @@ export const Tasks = (function() {
     ) {
         let newTask = { ...taskTemplate };
 
-        newTask.appendProjectName = appendProjectName;
+        newTask.appendProjectName = projectArray[appendProjectId - 1]["projectName"];
         newTask.appendProjectId = appendProjectId;
         newTask.taskName = taskName;
         newTask.priority = priority;
@@ -43,47 +42,56 @@ export const Tasks = (function() {
         array.push(newTask);
     }
 
-    const appendTasks = function() {
+    const appendTasksFirstLoad = function() {
         tasksArray.forEach(task => {
-            console.log(task);
             let project = projectArray.find(proj => proj.projectId === task.appendProjectId);
 
             if (project && !project.assignedTasks.includes(task)) {
                 project.assignedTasks.push(task);
-
             }
         });
     };
 
     const createFirstLoadTasks = (function() {
-        if (!localStorage.getItem("projectArray")) {
+        if (!localStorage.getItem("tasksArray")) {
             createTask(
-                tasksArray,
-                "Gamer Boy",            
+                tasksArray,          
                 1,                      
                 "Set up multiplayer",    
                 ["networking", "backend"], 
-                "Medium",                
+                "medium",                
                 "2024-09-15",            
                 "2024-11-01",            
-                "Pending"             
+                "in_progress"             
             );
 
             createTask(
-                tasksArray,
-                "Gamer Boy",            
+                tasksArray,           
                 1,                      
                 "Set up multiplayer",    
                 ["networking", "backend"], 
-                "Medium",                
+                "medium",                
                 "2024-09-15",            
                 "2024-11-01",            
-                "Pending"             
+                "done"             
             );
+
+            createTask(
+                tasksArray,           
+                2,                      
+                "Get solution",    
+                ["selfcare"], 
+                "high",                
+                "2024-09-15",            
+                "2024-11-01",            
+                "open"             
+            );
+
+            appendTasksFirstLoad();
         } else {
             tasksArray = JSON.parse(localStorage.getItem("tasksArray"));
         }
     })();
 
-    return { createFirstLoadTasks, appendTasks, createTask, tasksArray }
+    return { createFirstLoadTasks, appendTasksFirstLoad, createTask, tasksArray }
 })();
