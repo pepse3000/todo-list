@@ -9,8 +9,4 @@ import { DOMSideGenerator } from "./domgenerator.js";
 let projectManager = Projects;
 let taskManager = Tasks;
 
-
-taskManager.appendTasks();
 DOMSideGenerator.createProjects();
-
-console.log(projectManager.projectsArray)
