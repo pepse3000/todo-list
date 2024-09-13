@@ -1,3 +1,6 @@
+import avatar1 from './proj_avatars/1.png';
+import avatar2 from './proj_avatars/2.png';
+
 export const Projects = (function() {
     const projectsArray = [];
 
@@ -15,8 +18,15 @@ export const Projects = (function() {
     }
 
     const avatarUrls = [
-        "./proj_avatars/1.png",
-        "./proj_avatars/2.png",
+        avatar1,
+        avatar2,
+    ]
+
+    const avatarBackgroundColors = [
+        "#009edd", // blue
+        "#e83d56", // red
+        "#0f1120", // black
+        "#4d515c", // gray
     ]
 
     const createProject = function(
@@ -31,6 +41,10 @@ export const Projects = (function() {
     ) {
         let newProject = { ...projectTemplate };
 
+        if (projectName.length > 20) {
+            return "length>20";
+        }
+
         newProject.projectName = projectName;
         newProject.small_desc = small_desc;
         newProject.priority = priority;
@@ -43,7 +57,7 @@ export const Projects = (function() {
         newProject.assignedTasks = [];
 
         let imageUrl = avatarUrls[Math.floor(Math.random()*avatarUrls.length)];
-        newProject.avatar = "url(" + imageUrl + ")"
+        newProject.avatar = `url(${imageUrl})`;
     
         array.push(newProject);
     }
@@ -76,7 +90,7 @@ export const Projects = (function() {
     
             createProject(
                 projectsArray,
-                "Eco Friendly Solutions",
+                "Eco Solutions",
                 "A project focused on sustainable environmental solutions",
                 [],
                 "medium",
@@ -89,5 +103,5 @@ export const Projects = (function() {
         }
     })();
 
-    return { createProject, redactVariable, projectsArray }
+    return { createProject, redactVariable, avatarBackgroundColors, projectsArray }
 })();
