@@ -220,7 +220,7 @@ button:nth-child(5).active {
 
 /*  Projects */
 .projects-header,
-.tasks-header {
+.tags-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -238,7 +238,7 @@ button:nth-child(5).active {
 /* Projects Elements */
 
 .project-element,
-.task-element {
+.tag-element {
     position: relative;
     display: flex;
     align-items: center;
@@ -249,18 +249,29 @@ button:nth-child(5).active {
 }
 
 .project-element:hover,
-.task-element:hover {
+.tag-element:hover {
     background: #F8F8F8;
     transition: 0.2s;
     cursor: pointer;
 }
 
 .project-element p,
-.task-element p {
+.tag-element p {
     margin: 0;
     color: var(--dark-gray-text-color);
     font-weight: 400;
 }
+
+.tag-element p {
+    font-size: 14px;
+}
+
+.tag-element .img-holder {
+    width: 10px;
+    height: 10px;
+}
+
+
 
 .project-element:nth-last-child(1) {
     margin-bottom: 15px;
@@ -270,6 +281,7 @@ button:nth-child(5).active {
     border-radius: 10px;
     width: 40px;
     height: 40px;
+    background-size: 20px;
 }
 
 #t1 .img-holder {
@@ -292,10 +304,25 @@ button:nth-child(5).active {
     right: 5%;
 }
 
+/* Tags Container */
+.tags-container {
+    overflow: hidden;
+    overflow-y: scroll;
+    height: 7rem;
+    margin: 0;
+}
+
+/* Projects Container */
+.projects-container {
+    overflow: hidden;
+    overflow-y: scroll;
+    height: 8.1rem;
+}
+
 /* Profile or account */
 
 .account-manager {
-    margin-top: 6rem;
+    margin-top: 4rem;
     display: flex;
     position: relative;
     justify-content: space-between;
