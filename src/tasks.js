@@ -1,6 +1,6 @@
 import { Projects } from "./projects.js";
 
-export const Tasks = (function() {
+export const ProjectTasks = (function() {
     let tasksArray = [];
     const projectArray = Projects.projectsArray;
 
@@ -40,6 +40,7 @@ export const Tasks = (function() {
         newTask.taskId = array.length + 1;
     
         array.push(newTask);
+        saveToLocalStorage();
     }
 
     const appendTasksFirstLoad = function() {
@@ -51,6 +52,10 @@ export const Tasks = (function() {
             }
         });
     };
+
+    const saveToLocalStorage = function() {
+        localStorage.setItem("tasksArray", JSON.stringify(tasksArray));
+    }
 
     const createFirstLoadTasks = (function() {
         if (!localStorage.getItem("tasksArray")) {
@@ -90,8 +95,15 @@ export const Tasks = (function() {
             appendTasksFirstLoad();
         } else {
             tasksArray = JSON.parse(localStorage.getItem("tasksArray"));
+            appendTasksFirstLoad();
         }
     })();
 
-    return { createFirstLoadTasks, appendTasksFirstLoad, createTask, tasksArray }
+    return { 
+        createFirstLoadTasks, 
+        appendTasksFirstLoad, 
+        createTask, 
+        tasksArray, 
+        saveToLocalStorage 
+    }
 })();
