@@ -100,6 +100,11 @@ export const Projects = (function() {
         return false;
     }
 
+    const sortProjectsByTasks = function() {
+        let arrayToSort = [ ...projectsArray ];
+        return arrayToSort.sort((a, b) => b.assignedTasks.length - a.assignedTasks.length);
+    }
+
     const createFirstLoadProjects = (function() {
         if (!localStorage.getItem("projectsArray")) {
             createProject(
@@ -133,6 +138,7 @@ export const Projects = (function() {
         redactVariable, 
         avatarBackgroundColors, 
         projectsArray,
-        saveToLocalStorage
+        saveToLocalStorage,
+        sortProjectsByTasks
      }
 })();
