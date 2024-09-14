@@ -116,6 +116,10 @@
     margin-bottom: 5px;
 }
 
+.todo-element:hover {
+    background: #f3f2f8;
+}
+
 .todo-element p {
     margin: 5px 0px;
     color: var(--black-text-color);
@@ -176,6 +180,9 @@
     color: #BBBABE;
 }
 
+.todo-element p.expiry {
+    color:#ff6868;
+}
 
 /* tags */
 
