@@ -1,6 +1,7 @@
 import { Projects } from "./projects.js";
 import { Tasks } from "./tasks.js";
 import { Tags } from "./tags.js";
+import { TimeConverter } from "./utils/timeconverter.js";
 
 export const DOMSideGenerator = (function() {
     const projectsArray = Projects.projectsArray;
@@ -79,8 +80,11 @@ export const DOMSideGenerator = (function() {
             let todosContainer = document.querySelector(".todos-container");
             todosContainer.innerHTML = "";
 
-            tasksArray.forEach(task => {
-                console.log(task);
+            let sortedTasksArray = [ ...tasksArray ].sort((a, b) => {
+                return new Date(a.dueDate) - new Date(b.dueDate);
+            })
+
+            sortedTasksArray.forEach(task => {
 
                 if (task.status == "done") {
                     return;
@@ -97,18 +101,20 @@ export const DOMSideGenerator = (function() {
                 let projectDiv = document.createElement("div");
 
                 // if task appended to project
-                if (task.appendProject) {
+                if (task.appendProjectId) {
+                    let appendProject = projectsArray[task.appendProjectId - 1];
+
                     projectDiv.classList.add("project-assign");
-                    projectDiv.style.background = task.appendProject.background;
+                    projectDiv.style.background = appendProject.background;
 
                     let projectImgHolder = document.createElement("div");
                     let projectName = document.createElement("p");
 
                     projectImgHolder.classList.add("img-holder");
-                    projectImgHolder.style.background = task.appendProject.avatar;
+                    projectImgHolder.style.background = appendProject.avatar;
                     projectImgHolder.style.backgroundSize = "cover";
 
-                    projectName.textContent = task.appendProject.projectName;
+                    projectName.textContent = appendProject.projectName;
                     projectName.style.color = "#F5FFFC";
 
                     projectDiv.appendChild(projectImgHolder);
@@ -168,8 +174,13 @@ export const DOMSideGenerator = (function() {
 
                 // -----  date
                 let date = document.createElement("p");
-                date.textContent = task.dueDate;
+
+                date.textContent = TimeConverter.convertDateToString(task.dueDate);
                 date.classList.add("date");
+
+                if (TimeConverter.checkExpiryDate(task.dueDate) == "expiry") {
+                    date.classList.add("expiry");
+                }
 
                 taskSubInfo.appendChild(priorityDiv);
                 taskSubInfo.appendChild(date);
