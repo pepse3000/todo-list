@@ -1,4 +1,5 @@
 import { Projects } from "./projects.js";
+import { TimeConverter } from "./utils/timeconverter.js";
 
 export const Tasks = (function() {
     let tasksArray = [];
@@ -7,7 +8,6 @@ export const Tasks = (function() {
     const taskTemplate = {   
         "taskId": 0,
         "appendProjectName": "",
-        "appendProject": "",
         "appendProjectId": "",
         "taskName": "",
         "tags": [],
@@ -23,7 +23,6 @@ export const Tasks = (function() {
         taskName,
         tags,
         priority,
-        createDate,
         dueDate,
         status,
     ) {
@@ -31,16 +30,15 @@ export const Tasks = (function() {
 
         if (appendProjectId) {
             newTask.appendProjectName = projectArray[appendProjectId - 1]["projectName"];
-            newTask.appendProject = projectArray[appendProjectId - 1];
             newTask.appendProjectId = appendProjectId;
         }
 
         newTask.taskName = taskName;
         newTask.priority = priority;
-        newTask.createDate = createDate;
         newTask.dueDate = dueDate;
         newTask.tags = tags;
         newTask.status = status;
+        newTask.createDate = new Date();
 
         newTask.taskId = array.length + 1; 
     
@@ -77,9 +75,8 @@ export const Tasks = (function() {
                 1,                      
                 "Set up multiplayer",    
                 ["Selfcare"], 
-                "medium",                
-                "2024-09-15",            
-                "2024-11-01",            
+                "medium",                          
+                TimeConverter.convertStringToDate("tomorrow"),            
                 "in_progress"             
             );
 
@@ -88,9 +85,8 @@ export const Tasks = (function() {
                 1,                      
                 "Set up multiplayer",    
                 ["Economic", "Shopping"], 
-                "medium",                
-                "2024-09-15",            
-                "2024-11-01",            
+                "medium",                       
+                TimeConverter.convertStringToDate("tomorrow"),            
                 "done"             
             );
 
@@ -99,9 +95,8 @@ export const Tasks = (function() {
                 2,                      
                 "Get solution",    
                 ["Selfcare"], 
-                "high",                
-                "2024-09-15",            
-                "2024-11-01",            
+                "high",                         
+                TimeConverter.convertStringToDate("today"),            
                 "open"             
             );
 
@@ -110,9 +105,8 @@ export const Tasks = (function() {
                 "",                      
                 "Pay $1 to Odin Project",    
                 ["Finance"], 
-                "medium",                
-                "2024-09-15",            
-                "2024-11-01",            
+                "medium",                          
+                TimeConverter.convertStringToDate("2024-09-10"),             
                 "open"             
             );
 
