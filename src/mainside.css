@@ -78,8 +78,8 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
-    margin: 20px 0px;
-    height: 63.7vh;
+    margin: 0px;
+    height: 58.7vh;
     overflow: hidden;
     overflow-y: scroll;
 }
@@ -88,6 +88,7 @@
 
 .task-element {
     z-index: 4;
+    position: relative;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -95,6 +96,10 @@
     border: 1px solid var(--light-border-color);
     border-radius: 15px;
     padding-left: 20px;
+}
+
+.task-element:hover {
+    background: #f0f0f040;
 }
 
 .task-element .tag {
@@ -118,6 +123,230 @@
     opacity: 30%;
     bottom: 100px;
     right: 0px;
-    transform: rotate(30deg);
+    transform: rotate(0deg);
 }
 
+.date.expiry {
+    color: #ff6868;
+}
+
+.task-element .date {
+    position: absolute;
+    right: 30px;
+}
+
+/* task create form */
+
+form {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: relative;
+}
+
+.new-task {
+    gap: 10px;
+    border: 1px solid var(--light-border-color);
+    border-radius: 8px;
+    background: 0;
+    border: 0;
+    padding: 10px;
+    border: 1px solid 0;
+}
+
+.new-task {
+    border: 1px solid var(--light-border-color);
+    background: #ffffff;
+    background-size: cover;
+    width: 100vh;
+    margin: 20px 0;
+}
+
+ .new-task:has(input[type=text]:focus) {
+    border: 1px solid var(--active-color);
+    border-radius: 8px;
+    outline: 0;
+    background: white;
+}
+
+.new-task input[type="text"] {
+    background: 0;
+    border: 0;
+    width: 600px
+}
+
+.new-task input[type="text"]:focus {
+    outline: 0;
+    background: 0;
+}
+
+
+.set-info {
+    display: flex;
+    flex-direction: column;
+    transition: 0.3s;
+    z-index: 5;
+    position: absolute;
+    right: 0;
+    top: 40px;
+    background: white;
+    border-radius: 5px;
+    box-shadow: 0px 0px 7px -3px #4F4F4F40;
+    border: 1px solid var(--light-border-color);
+}
+
+
+.select-date {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    gap: 10px;
+    border-bottom: 1px solid var(--light-border-color);
+    padding: 10px;
+}
+
+.select-date p {
+    margin: 0;
+    padding: 0;
+}
+
+.tomorrow-btn,
+.today-btn {
+    width: 30px;
+    height: 30px;
+    opacity: 0.7;
+}
+
+.today-btn:hover,
+.tomorrow-btn:hover {
+    cursor: pointer;
+    opacity: 0.9;
+}
+
+.tomorrow-btn {
+    background: url(./icons/tomorrow.png);
+    background-size: 15px;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.today-btn {
+    background: url(./icons/today.png);
+    background-size: 15px;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.priority-tags {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0px 10px;
+    justify-content: center;
+    border-bottom: 1px solid var(--light-border-color);
+}
+
+.priority-tags label {
+    transition: 0.3s;
+    opacity: 0.7;
+    scale: 0.9;
+    border: 1px solid white;
+}
+
+.priority-tags p {
+    font-size: 14px;
+}
+
+.priority-tags input[type="radio"],
+.select-date input[type="radio"] {
+    width: 25px;
+    height: 25px;
+    border: 0;
+    font-weight: 700;
+    display: none;
+}
+
+.priority-tags input[type="radio"]:checked + label{
+    opacity: 1;
+    scale: 1;
+    border: 1px solid var(--active-color);
+}
+
+.select-date input[type="radio"] + label {
+    transition: 0.3s;
+    opacity: 0.7;
+    scale: 0.8;
+}
+
+.select-date input[type="radio"]:checked + label {
+    scale: 1;
+    border-radius: 3px;
+    background-color: #e9e9e9;
+}
+
+#show-set-info {
+    position: absolute;
+    right: 30px;
+    border: 0;
+    background: 0;
+    margin: 0;
+    padding: 0;
+    text-transform: uppercase;
+    color: var(--low-opacity-text-color);
+    padding: 0px;
+}
+
+#show-set-info:hover {
+    color:rgb(179, 179, 179);
+    cursor: pointer;
+}
+
+.hidden {
+    display: none;
+}
+
+::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+}
+
+#date {
+    border: 0;
+    padding: 10px;
+}
+
+#date:focus {
+    outline: 1px solid var(--active-color);
+}
+
+/* tags */
+
+.tags-assigner {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    gap: 5px;
+    height: 11.7vh;
+    overflow: hidden;
+    overflow-y: scroll;
+}
+
+.tags-assigner input[type=checkbox] {
+    display: none;
+}
+
+.tags-assigner label {
+    border: 1px solid white;
+    border-radius: 10px;
+    scale: 0.9;
+    padding-left: 10px;
+    transition: 0.3s;
+}
+
+.tags-assigner label:hover {
+    border-radius: 10px;
+}
+
+.tags-assigner input[type="checkbox"]:checked + label {
+    border: 1px solid var(--active-color);
+    scale: 1;
+}
