@@ -80,8 +80,7 @@ body {
 }
 
 .sidebar-elements button:hover {
-    background: var(--active-color);
-    color: var(--reverse-text-color);
+    background: #f0f0f3;
     transition: 0.2s;
     cursor: pointer;
 }
@@ -90,6 +89,10 @@ body {
     width: 19px;
     height: 19px;
     background-position: center;
+}
+
+button {
+    transition: 0.1s;
 }
 
 button:nth-child(1) .icon-holder {
@@ -120,7 +123,7 @@ button:nth-child(5) {
 
 /* Hover Background Change */
 
-button:nth-child(1):hover .icon-holder {
+/* button:nth-child(1):hover .icon-holder {
     background: url(./icons/category-hover.png);
 }
 
@@ -140,7 +143,7 @@ button:nth-child(4):hover .icon-holder {
 
 button:nth-child(5):hover .icon-holder {
     background: url(./icons/folder-hover.png);
-}
+} */
 
 /* Active buttons config */
 
@@ -155,6 +158,7 @@ button:nth-child(1).active {
 
 button:nth-child(2).active .icon-holder {
     background: url(./icons/calendar-hover.png);
+    background-repeat: no-repeat;
 }
 
 button:nth-child(2).active {
@@ -164,6 +168,7 @@ button:nth-child(2).active {
 
 button:nth-child(3).active .icon-holder {
     background: url(./icons/paper-hover.png);
+    background-repeat: no-repeat;
 }
 
 button:nth-child(3).active {
@@ -173,6 +178,7 @@ button:nth-child(3).active {
 
 button:nth-child(4).active .icon-holder {
     background: url(./icons/activity-hover.png);
+    background-repeat: no-repeat;
 }
 
 button:nth-child(4).active {
@@ -182,6 +188,7 @@ button:nth-child(4).active {
 
 button:nth-child(5).active .icon-holder {
     background: url(./icons/folder-hover.png);
+    background-repeat: no-repeat;
 }
 
 button:nth-child(5).active {
@@ -251,7 +258,7 @@ button:nth-child(5).active {
 
 .project-element:hover,
 .tag-element:hover {
-    background: #F8F8F8;
+    background: #f0f0f3;
     transition: 0.2s;
     cursor: pointer;
 }
