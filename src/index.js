@@ -5,6 +5,7 @@ import "./mainside.css";
 import { Projects } from "./projects.js";
 import { Tasks } from "./tasks.js";
 import { DOMSideGenerator } from "./domgenerator.js";
+import { PageLocator } from "./pagelocator.js";
 import { ButtonAssigner } from "./buttonassigner.js";
 import { Tags } from "./tags.js";
 
@@ -15,6 +16,5 @@ let tagManager = Tags;
 DOMSideGenerator.createProjects();
 DOMSideGenerator.createTags();
 DOMSideGenerator.createTodos();
+PageLocator.openTodayPage();
 ButtonAssigner.assignMenuButtons();
-
-console.log(taskManager.tasksArray);
