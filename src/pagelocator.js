@@ -2,11 +2,15 @@ import { Projects } from "./projects.js";
 import { Tasks } from "./tasks.js";
 import { Tags } from "./tags.js";
 import { DOMSideGenerator } from "./domgenerator.js";
+import { TimeConverter } from "./utils/timeconverter.js";
+import { ObjectCreator } from "./utils/objectcreator.js";
+import { ButtonAssigner } from "./buttonassigner.js";
 
 export const PageLocator = (function() {
     const tagsArray = Tags.tagsArray;
     const tasksArray = Tasks.tasksArray;
     const projectsArray = Projects.projectsArray;
+    const btnsArray = document.querySelectorAll(".side-btn")
 
     const openTodayPage = function() {
         // main document
@@ -68,104 +72,96 @@ export const PageLocator = (function() {
         contentContainer.appendChild(gradientInfo);
 
         // todos
-        let todosList = document.createElement("div");
-        todosList.classList.add("todos-list");
+        let taskForm = ObjectCreator.createNewTaskInput();
+        taskForm.classList.add("new-task");
 
-        tasksArray.filter(task => task.status != "done").forEach(task => {
-            let taskElement = document.createElement("div");
-            taskElement.classList.add("task-element");
+        let todosList = ObjectCreator.createTodayList(tasksArray);
 
-            let todoStatus = document.createElement("div");
-            todoStatus.classList.add("todo-status");
-            taskElement.appendChild(todoStatus);
-
-            let todoName = document.createElement("p");
-            todoName.textContent = task.taskName;
-            taskElement.appendChild(todoName);
-
-            let projectDiv = document.createElement("div");
-
-            if (task.appendProject) {
-                projectDiv.classList.add("project-assign");
-                projectDiv.style.background = task.appendProject.background;
-                projectDiv.style.padding = "2px 6px 2px 0px";
-
-                let projectImgHolder = document.createElement("div");
-                let projectName = document.createElement("p");
-
-                projectImgHolder.classList.add("img-holder");
-                projectImgHolder.style.background = task.appendProject.avatar;
-                projectImgHolder.style.backgroundSize = "cover";
-
-                projectName.textContent = task.appendProject.projectName;
-                projectName.style.color = "#F5FFFC";
-                projectName.style.fontSize = "12px";
-
-                projectDiv.appendChild(projectImgHolder);
-                projectDiv.appendChild(projectName);
-                taskElement.appendChild(projectDiv);
-            }
-
-            task.tags.forEach(tag => {
-                tagsArray.forEach(tagElement => {
-                    if (tagElement.tagName == tag) {
-                        let tagDiv = document.createElement("div");
-                        tagDiv.classList.add("tag");
-                        tagDiv.textContent = tagElement.tagName;
-                        tagDiv.style.background = tagElement.color + "30";
-                        tagDiv.style.color = tagElement.color;
-
-                        taskElement.appendChild(tagDiv);
-                    }
-                })
-            })
-
-            let priorityDiv = document.createElement("div");
-            let span = document.createElement("span");
-
-            priorityDiv.appendChild(span);
-            priorityDiv.classList.add("priority");
-            priorityDiv.title = "Priority";
-
-            if (task.priority == "high") {
-                priorityDiv.classList.add("max");
-                span.textContent = "!!";
-            } else if (task.priorty == "medium") {
-                priorityDiv.classList.add("medium");
-                span.textContent = "!";
-            } else {
-                priorityDiv.classList.add("low");
-                priorityDiv.classList.add("relative");
-                span.textContent = "↓";
-            }
-
-            taskElement.appendChild(priorityDiv);
-            todosList.appendChild(taskElement);
-        })
-
+        changeButtonActivityStatus(btnsArray, 0);
+        contentContainer.appendChild(taskForm);
         contentContainer.appendChild(todosList);
         mainContainer.appendChild(contentContainer);
+
+        let tagsAssigner = document.querySelector(".tags-assigner");
+
+        tagsArray.forEach(tag => {
+            let tagElement = document.createElement("input");
+            let tagLabel = document.createElement("label");
+
+            tagElement.type = "checkbox";
+            tagElement.id = tag.tagName;
+            tagElement.name = tag.tagName;
+            tagElement.value = tag.tagId;
+
+            tagLabel.htmlFor = tag.tagName;
+            tagLabel.textContent = tag.tagName;
+            tagLabel.style.background = `${tag.color}20`;
+            tagLabel.style.color = tag.color;
+
+            tagsAssigner.appendChild(tagElement);
+            tagsAssigner.appendChild(tagLabel);
+        })
+
+        ButtonAssigner.assignCreateNewTask();
+        ButtonAssigner.assignShowSetInfo();
+        ButtonAssigner.assingSetInfoDayPickers();
     }
 
     const openNext7DaysPage = function() {
-        
+        changeButtonActivityStatus(btnsArray, 1);
     }
 
     const openInboxPage = function() {
-        
+        changeButtonActivityStatus(btnsArray, 2);
     }
 
     const openActivityPage = function() {
-        
+        changeButtonActivityStatus(btnsArray, 3);
     }
 
     const openProjectsPage = function() {
-        
+        changeButtonActivityStatus(btnsArray, 4);
     }
 
-    const changeButtonActivityStatus = function(btn) {
+    const changeButtonActivityStatus = function(btnsArray, id) {
+        if (btnsArray[id].classList.contains("active")) {
+            return;
+        } else {
+            btnsArray.forEach(btn => {
+                if (btn.classList.contains("active")) {
+                    btn.classList.remove("active");
+                }
+            })
 
+            btnsArray[id].classList.add("active");
+        }
     }
 
-    return { openTodayPage }
+    const showSetInfo = function(status) {
+        let setInfoDiv = document.querySelector(".set-info");
+
+        if (status == "open") {
+            if (setInfoDiv.classList.contains("hidden")) {
+                return;
+            }
+            
+            setInfoDiv.classList.add("hidden");
+            return;
+        }
+
+        if (setInfoDiv.classList.contains("hidden")) {
+            setInfoDiv.classList.remove("hidden");
+        } else {
+            setInfoDiv.classList.add("hidden");
+        }
+    }
+
+    return { 
+        openTodayPage,
+        openNext7DaysPage,
+        openInboxPage,
+        openActivityPage,
+        openProjectsPage,
+        showSetInfo
+     }
 })();
