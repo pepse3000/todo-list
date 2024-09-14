@@ -94,7 +94,6 @@ export const Projects = (function() {
 
         if (findArray) {
             findArray[variable] == value;
-            return console.log("redacted");
         }
 
         return false;
