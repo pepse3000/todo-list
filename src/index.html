@@ -55,6 +55,12 @@
                 </div>
             </div>
             <div class="sidebar-tags">
+                <form class="new-tag hidden">
+                    <label for="tagname"></label>
+                    <input type="text" name="tagname" id="tagname" required placeholder="+   Add tag name">
+                    <div class="tags-list"></div>
+                    <input type="submit" id="createTag" value="Create Tag"/>
+                </form>
                 <div class="tags-header">
                     <p>Tags</p>
                     <button class="add" id="add-tag">
@@ -85,6 +91,7 @@
                 <div class="icon-holder"></div>
             </div>
         </div>
+
         <div class="main-container">
             <div class="content-container">
                 <div class="gradient-container"></div>
@@ -137,7 +144,7 @@
                         </div>
                         <input type="submit" value="" style="display: none"/>
                 </form>
-
+                
                 <div class="todos-list">
                     <div class="task-element">
                         <div class="todo-status"></div>
