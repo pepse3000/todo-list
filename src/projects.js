@@ -79,7 +79,7 @@ export const Projects = (function() {
 
         let imageUrl = avatarUrls[Math.floor(Math.random()*avatarUrls.length)];
         newProject.avatar = `url(${imageUrl})`;
-        let backgroundColor = avatarBackgroundColors[Math.round(Math.random()*avatarBackgroundColors.length)];
+        let backgroundColor = avatarBackgroundColors[Math.random() * avatarBackgroundColors.length | 0];
         newProject.background = backgroundColor;
         
         array.push(newProject);
