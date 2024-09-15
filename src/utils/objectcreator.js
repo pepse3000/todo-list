@@ -5,8 +5,9 @@ import { Projects } from "../projects.js";
 
 
 export const ObjectCreator = (function() {
-    const createTodayList = function() {
-        
+    const createTodayList = function(day) {
+
+        let filteredArray;
         let tasksArray = Tasks.tasksArray;
         let tagsArray = Tags.tagsArray;
         let projectsArray = Projects.projectsArray;
@@ -14,11 +15,22 @@ export const ObjectCreator = (function() {
         let todosList = document.createElement("div");
         todosList.classList.add("todos-list");
 
-        tasksArray
-        .filter(task => task.status != "done")
-        .filter(task => new Date(task.dueDate).getDate() <= new Date().getDate() && new Date(task.dueDate).getMonth() <= new Date().getMonth())
-        .sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate))
-        .forEach(task => {
+        if (day == "today") {
+            filteredArray = tasksArray
+                .filter(task => task.status != "done")
+                .filter(task => new Date(task.dueDate).getDate() <= new Date().getDate() && new Date(task.dueDate).getMonth() <= new Date().getMonth())
+                .sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate))
+        }
+
+        if (day == "7days") {
+            filteredArray = tasksArray
+                .filter(task => task.status != "done")
+                .filter(task => new Date(task.dueDate).getDate() > new Date().getDate() && new Date(task.dueDate).getMonth() <= new Date().getMonth() && new Date(task.dueDate).getDate() < new Date().getDate() + 7)
+                .sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate))
+        }
+
+
+        filteredArray.forEach(task => {
             let taskElement = document.createElement("div");
             taskElement.classList.add("task-element");
             taskElement.id = `task${task.taskId}`
@@ -29,6 +41,7 @@ export const ObjectCreator = (function() {
 
             let todoName = document.createElement("p");
             todoName.textContent = task.taskName;
+            todoName.classList.add("task-name")
             taskElement.appendChild(todoName);
 
             let projectDiv = document.createElement("div");
@@ -77,10 +90,10 @@ export const ObjectCreator = (function() {
             priorityDiv.classList.add("priority");
             priorityDiv.title = "Priority";
 
-            if (task.priority == "high") {
+            if (task.priority == "max") {
                 priorityDiv.classList.add("max");
                 span.textContent = "!!";
-            } else if (task.priorty == "medium") {
+            } else if (task.priority == "medium") {
                 priorityDiv.classList.add("medium");
                 span.textContent = "!";
             } else {
@@ -174,5 +187,33 @@ export const ObjectCreator = (function() {
         
     }
 
-    return { createTodayList, createNewTaskInput, changeCalendarDay }
+    const createNewTagInput = function() {
+        let tagsList = document.querySelector(".tags-list");
+        let forColor = "color";
+
+        for (const [key, value] of Object.entries(Tags.tagsColors)) {
+            let colorPicker = document.createElement("input");
+            colorPicker.type = "radio";
+            colorPicker.id = key;
+            colorPicker.name = forColor;
+            colorPicker.value = value;
+
+            let colorLabel = document.createElement("label")
+            colorLabel.htmlFor = colorPicker.id;
+            colorLabel.textContent = key;
+            colorLabel.style.background = `${value}30`;
+            colorLabel.style.color = value;
+
+            tagsList.appendChild(colorPicker);
+            tagsList.appendChild(colorLabel);
+        }
+
+    }
+
+    return { 
+        createTodayList, 
+        createNewTaskInput, 
+        changeCalendarDay,
+        createNewTagInput
+     }
 })();
