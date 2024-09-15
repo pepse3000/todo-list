@@ -1,0 +1,104 @@
+:root {
+    --light-text-color: #9896A3;
+    --light-border-color: #E6E4F0;
+    --low-opacity-text-color: #D3D2DC;
+    --active-color: #5577FF;
+    --reverse-text-color: #F5FFFC;
+    --dark-gray-text-color: #888793;
+    --black-text-color: #4F4F4F;
+}
+
+/* Tag Form */
+
+.sidebar-tags {
+    position: relative;
+}
+
+.new-tag {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    background: white;
+    border-radius: 5px;
+    box-shadow: 0px 0px 7px -3px #4F4F4F40;
+    border: 1px solid var(--light-border-color);
+    z-index: 5;
+    top: 0;
+    right: -210px;
+    padding: 15px;
+}
+
+.new-tag.hidden {
+    display: none;
+}
+
+.new-tag input[type="text"] {
+    padding-left: 5px;
+    color: var(--black-text-color);
+    border-radius: 5px;
+    border: 1px solid white;
+}
+
+.new-tag input[type="text"]:focus {
+    outline: 0;
+    border: 1px solid var(--active-color);
+}
+
+
+/* Tags List */
+
+.tags-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-top: 10px;
+}
+
+.tags-list input[type="radio"] {
+    display: none;
+}
+
+.tags-list input[type="radio"] + label {
+    padding: 3px;
+    border-radius: 10px;
+    transition: 0.3s;
+    opacity: 0.7;
+    scale: 0.9;
+    border: 1px solid white;
+    font-size: 14px;
+}
+
+.tags-list input[type="radio"]:checked + label {
+    scale: 1;
+    border-radius: 10px;
+    border: 1px solid var(--active-color);
+}
+
+/* Tag button */
+
+.tags-list ~ input[type="submit"] {
+    background: var(--active-color);
+    color: var(--reverse-text-color);
+    border: 0;
+    margin-top: 10px;
+    padding: 3px;
+    width: 100%;
+    margin-left: 5px;
+    border-radius: 5px;
+}
+
+.tags-list ~ input[type="submit"]:hover {
+    background: var(--active-color);
+    transition: 0.15s;
+    opacity: 0.9;
+    cursor: pointer;
+}
+
+.tags-list ~ input[type="submit"]:active {
+    scale: 0.99;
+}
+
+/* 
+********************
+********************
+*/
