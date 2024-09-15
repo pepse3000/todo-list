@@ -50,7 +50,7 @@ export const PageLocator = (function() {
         // total info cards
         let cardText = ["Today tasks", "Today completed", "Heaviest project"];
 
-        let cardContent = [Tasks.getUncompletedTasks().length, Tasks.getCompletedTasks().length, Projects.sortProjectsByTasks()[0].projectName];
+        let cardContent = [Tasks.getUncompletedTasks("today").length, Tasks.getCompletedTasks("today").length, Projects.sortProjectsByTasks()[0].projectName];
 
         for (let i = 0; i < 3; i++) {
             let totalInfo = document.createElement("div");
@@ -75,7 +75,7 @@ export const PageLocator = (function() {
         let taskForm = ObjectCreator.createNewTaskInput();
         taskForm.classList.add("new-task");
 
-        let todosList = ObjectCreator.createTodayList(tasksArray);
+        let todosList = ObjectCreator.createTodayList("today");
 
         changeButtonActivityStatus(btnsArray, 0);
         contentContainer.appendChild(taskForm);
@@ -105,9 +105,77 @@ export const PageLocator = (function() {
         ButtonAssigner.assignCreateNewTask();
         ButtonAssigner.assignShowSetInfo();
         ButtonAssigner.assingSetInfoDayPickers();
+        ButtonAssigner.assignCompleteTask();
     }
 
     const openNext7DaysPage = function() {
+        // main document
+        let mainContainer = document.querySelector(".main-container");
+        mainContainer.innerHTML = "";
+
+        let contentContainer = document.createElement("div");
+        contentContainer.classList.add("content-container", "days7page");
+
+        // background gradient
+        let gradientContainer = document.createElement("div");
+        gradientContainer.classList.add("gradient-container");
+        contentContainer.appendChild(gradientContainer);
+
+        // header
+        let mainHeader = document.createElement("div");
+        mainHeader.classList.add("main-header");
+
+        let iconHolder = document.createElement("div");
+        iconHolder.classList.add("icon-holder");
+
+        let headerName = document.createElement("h2");
+        headerName.textContent = "Next 7 Days Tasks"
+
+        mainHeader.appendChild(iconHolder);
+        mainHeader.appendChild(headerName);
+        contentContainer.appendChild(mainHeader);
+
+        // page info
+        let gradientInfo = document.createElement("div");
+        gradientInfo.classList.add("gradient-info", "days7");
+
+        let mainText = document.createElement("p");
+        mainText.textContent = "The future is something which everyone reaches at the rate of sixty minutes an hour, whatever he does, whoever he is.";
+        gradientInfo.appendChild(mainText);
+
+        // total info cards
+        let cardText = ["Next 7 Days Tasks", "Today completed", "Heaviest project"];
+
+        let cardContent = [Tasks.getUncompletedTasks("today").length, Tasks.getCompletedTasks("today").length, Projects.sortProjectsByTasks()[0].projectName];
+
+        for (let i = 0; i < 3; i++) {
+            let totalInfo = document.createElement("div");
+            totalInfo.classList.add("total-info");
+
+            let infoHeader = document.createElement("p");
+            infoHeader.classList.add("info-header");
+            infoHeader.textContent = cardText[i];
+
+            let info = document.createElement("p");
+            info.classList.add("info");
+            info.textContent = cardContent[i];
+
+            totalInfo.appendChild(infoHeader);
+            totalInfo.appendChild(info);
+            gradientInfo.appendChild(totalInfo);
+        }
+
+        contentContainer.appendChild(gradientInfo);
+
+        // todos
+
+        let todosList = ObjectCreator.createTodayList("7days");
+
+        changeButtonActivityStatus(btnsArray, 1);
+        contentContainer.appendChild(todosList);
+        mainContainer.appendChild(contentContainer);
+        ButtonAssigner.assignCompleteTask();
+
         changeButtonActivityStatus(btnsArray, 1);
     }
 
@@ -137,23 +205,29 @@ export const PageLocator = (function() {
         }
     }
 
-    const showSetInfo = function(status) {
-        let setInfoDiv = document.querySelector(".set-info");
+    const showInfo = function(element, status) {
+        let showDiv = document.querySelector(element);
 
         if (status == "open") {
-            if (setInfoDiv.classList.contains("hidden")) {
+            if (showDiv.classList.contains("hidden")) {
                 return;
             }
-            
-            setInfoDiv.classList.add("hidden");
+
+            showDiv.classList.add("hidden");
             return;
         }
 
-        if (setInfoDiv.classList.contains("hidden")) {
-            setInfoDiv.classList.remove("hidden");
+        if (showDiv.classList.contains("hidden")) {
+            showDiv.classList.remove("hidden");
         } else {
-            setInfoDiv.classList.add("hidden");
+            showDiv.classList.add("hidden");
         }
+    }
+
+    const showCreateTagForm = function(status) {
+        let createTagForm = document.querySelector(".new-tag");
+
+        
     }
 
     return { 
@@ -162,6 +236,6 @@ export const PageLocator = (function() {
         openInboxPage,
         openActivityPage,
         openProjectsPage,
-        showSetInfo
+        showInfo
      }
 })();
