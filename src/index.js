@@ -18,3 +18,4 @@ DOMSideGenerator.createTags();
 DOMSideGenerator.createTodos();
 PageLocator.openTodayPage();
 ButtonAssigner.assignMenuButtons();
+ButtonAssigner.assignCompleteTask();
