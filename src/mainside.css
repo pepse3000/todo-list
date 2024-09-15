@@ -42,6 +42,7 @@
 }
 
 .gradient-info {
+    width: 96vh;
     margin-top: 20px;
     height: 120px;
     background: url(./gradients/big_gradient4.png);
@@ -110,6 +111,13 @@
 .task-element div:nth-child(3) {
     margin-left: 30px;
 }
+
+.task-element:has(.todo-status:active),
+.todo-element:has(.todo-status:active)  {
+    transition: 0.3s;
+    scale: 0.99;
+}
+
 
 /* gradient-container */
 
@@ -191,6 +199,7 @@ form {
     top: 40px;
     background: white;
     border-radius: 5px;
+    color: var(--black-text-color);
     box-shadow: 0px 0px 7px -3px #4F4F4F40;
     border: 1px solid var(--light-border-color);
 }
@@ -349,4 +358,26 @@ form {
 .tags-assigner input[type="checkbox"]:checked + label {
     border: 1px solid var(--active-color);
     scale: 1;
+}
+
+/* 7 DAYS PAGE */
+
+.days7page .todos-list {
+    height: 65.85vh;
+}
+
+.gradient-info.days7 {
+    background: url(./gradients/big_gradient6.png);
+    background-repeat: no-repeat;
+    background-size: 1000px;
+    margin-bottom: 20px;
+}
+
+.days7page .gradient-container:nth-child(1) {
+    background: url(./gradients/Grad_15.png);
+    z-index: 0;
+    bottom: 120px;
+    transform: rotate(-30deg);
+    right: -100px;
+    background-size: contain;
 }
