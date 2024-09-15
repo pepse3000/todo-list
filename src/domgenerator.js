@@ -2,6 +2,8 @@ import { Projects } from "./projects.js";
 import { Tasks } from "./tasks.js";
 import { Tags } from "./tags.js";
 import { TimeConverter } from "./utils/timeconverter.js";
+import { ButtonAssigner } from "./buttonassigner.js";
+import { DomUpdater } from "./utils/domupdater.js";
 
 export const DOMSideGenerator = (function() {
     const projectsArray = Projects.projectsArray;
@@ -65,6 +67,7 @@ export const DOMSideGenerator = (function() {
 
                 tagNumber.classList.add("number");
                 tagNumber.textContent = tag["appendedProjects"].length + tag["appendedTasks"].length;
+                console.log(tag["appendedProjects"].length, tag["appendedTasks"].length);
 
                 tagElement.appendChild(imgHolder);
                 tagElement.appendChild(tagName);
@@ -73,6 +76,9 @@ export const DOMSideGenerator = (function() {
                 tagsContainer.appendChild(tagElement);
             })
         }
+
+        ButtonAssigner.assignShowCreateTagForm();
+        ButtonAssigner.assignCreateNewTag();
     });
 
     const createTodos = (function() {
@@ -125,6 +131,7 @@ export const DOMSideGenerator = (function() {
                 taskMainInfo.classList.add("task-main-info");
                 todoStatus.classList.add("todo-status");
                 todoText.textContent = task.taskName;
+                todoText.classList.add("task-name");
 
                 taskMainInfo.appendChild(todoStatus);
                 taskMainInfo.appendChild(todoText);
