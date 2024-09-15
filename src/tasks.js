@@ -15,6 +15,7 @@ export const Tasks = (function() {
         "createDate": "",
         "dueDate": "", 
         "status": "",
+        "completeDate": ""
     }
 
     const createTask = function(
@@ -60,11 +61,21 @@ export const Tasks = (function() {
         localStorage.setItem("tasksArray", JSON.stringify(tasksArray));
     }
 
-    const getCompletedTasks = function() {
+    const getCompletedTasks = function(status) {
+        if (status == "today") {
+            return tasksArray.filter(task => task.status == "done" && new Date(task.completeDate).getDate() == new Date().getDate());
+        }
+
         return tasksArray.filter(task => task.status == "done");
     }
 
-    const getUncompletedTasks = function() {
+    const getUncompletedTasks = function(status) {
+        if (status == "today") {
+            return tasksArray
+            .filter(task => task.status != "done")
+            .filter(task => new Date(task.dueDate).getDate() <= new Date().getDate() && new Date(task.dueDate).getMonth() <= new Date().getMonth())
+        }
+
         return tasksArray.filter(task => task.status == "open" || task.status == "in_progress");
     }
 
@@ -78,16 +89,6 @@ export const Tasks = (function() {
                 "medium",                          
                 TimeConverter.convertStringToDate("tomorrow"),            
                 "in_progress"             
-            );
-
-            createTask(
-                tasksArray,           
-                1,                      
-                "Set up multiplayer",    
-                ["Economic", "Shopping"], 
-                "medium",                       
-                TimeConverter.convertStringToDate("tomorrow"),            
-                "done"             
             );
 
             createTask(
@@ -117,6 +118,30 @@ export const Tasks = (function() {
         }
     })();
 
+    const completeTask = function(taskElement) {
+        let taskId = "";
+        console.log(taskElement);
+
+        if (!taskElement.parentElement.id) {
+            taskId = taskElement.parentElement.parentElement.id;
+        } else {
+            taskId = taskElement.parentElement.id;
+        }
+
+        let task = tasksArray.find(task => {
+            return +task.taskId == +taskId.slice(4);
+        });
+
+        let taskDom = document.querySelectorAll(`#${taskId}`);
+        taskDom.forEach(task => task.classList.add("checked"));
+        
+        task.status = "done";
+        task.completeDate = new Date();
+
+        console.log(task)
+        saveToLocalStorage();
+    }
+
     return { 
         tasksArray, 
         createFirstLoadTasks, 
@@ -125,5 +150,6 @@ export const Tasks = (function() {
         saveToLocalStorage,
         getCompletedTasks,
         getUncompletedTasks,
+        completeTask,
     }
 })();
