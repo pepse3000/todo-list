@@ -23,21 +23,26 @@ export const Tags = (function() {
         "yellow": "#FFC800", 
     }
 
-    const countTagUsage = function(tag) {
+    const countTagUsage = function(tagName, tag) {
         let appendedProjects = [];
         let appendedTasks = [];
 
         projectsArray.forEach(project => {
-            if (project["tags"].includes(tag)) {
+            if (project["tags"].includes(tagName)) {
                 appendedProjects.push(project["projectId"]);
             }
         })
 
         tasksArray.forEach(task => {
-            if (task["tags"].includes(tag)) {
+            if (task["tags"].includes(tagName)) {
                 appendedTasks.push(task["taskId"]);
             }
         })
+
+        if (tag) {
+            tag.appendedProjects = appendedProjects;
+            tag.appendedTasks = appendedTasks;
+        }
 
         return [ appendedProjects, appendedTasks ];
     }
@@ -91,5 +96,12 @@ export const Tags = (function() {
         }
     })();
 
-    return { tagsArray, createTag, createFirstLoadTasks };
+    return { 
+        tagsArray, 
+        createTag, 
+        createFirstLoadTasks,
+        tagsColors,
+        countTagUsage,
+        saveToLocalStorage
+     };
 })();
