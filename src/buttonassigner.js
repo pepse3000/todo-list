@@ -29,7 +29,7 @@ export const ButtonAssigner = (function() {
     const assignShowSetInfo = function() {
         let showBtn = document.querySelector("#show-set-info");
 
-        showBtn.addEventListener("click", () => PageLocator.showSetInfo());
+        showBtn.addEventListener("click", () => PageLocator.showInfo(".set-info"));
     }
 
     const assingSetInfoDayPickers = function() {
@@ -47,6 +47,7 @@ export const ButtonAssigner = (function() {
             event.preventDefault();
             let name = document.querySelector("#taskname").value;
             let priority = document.querySelector("input[name='priority']:checked").value;
+            console.log(priority)
 
             let tags = document.querySelectorAll("input[type='checkbox']:checked");
             let tagsNames = [];
@@ -69,10 +70,62 @@ export const ButtonAssigner = (function() {
             let taskName = document.querySelector("#taskname");
             taskName.value = "";
             
-            PageLocator.showSetInfo("open");
+            PageLocator.showInfo(".set-info", "open");
             DomUpdater.updateTodayList();
         })
     }
 
-    return { assignMenuButtons, assignShowSetInfo, assingSetInfoDayPickers, assignCreateNewTask }
+    const assignCompleteTask = function() {
+        let allBtns = document.querySelectorAll(".todo-status");
+
+        allBtns.forEach(btn => {
+            btn.addEventListener("click", e => {
+                Tasks.completeTask(e.target)
+                setTimeout(DomUpdater.updateTodayList, 1500);
+        })
+    })
+    }
+
+    const assignShowCreateTagForm = function () {
+        let createTagButton = document.querySelector("#add-tag");
+
+        createTagButton.addEventListener("click", () => {
+            PageLocator.showInfo(".new-tag", "");
+        });
+    }
+
+    const assignCreateNewTag = function() {
+        let form = document.querySelector(".new-tag")
+
+        form.addEventListener("submit", (event) => {
+            event.preventDefault();
+            let name = document.querySelector("#tagname").value;
+
+            let color;
+            if (document.querySelector("input[name='color']:checked")) {
+                color = document.querySelector("input[name='color']:checked").value;
+            } else {
+                color = Tags.tagsColors.red;
+            }
+            
+            Tags.createTag(
+                Tags.tagsArray,
+                name,
+                color
+            )
+            
+            PageLocator.showInfo(".new-tag", "open");
+            DomUpdater.updateTagsList();
+        })
+    }
+
+    return { 
+        assignMenuButtons, 
+        assignShowSetInfo, 
+        assingSetInfoDayPickers, 
+        assignCreateNewTask,
+        assignCompleteTask,
+        assignShowCreateTagForm,
+        assignCreateNewTag
+     }
 })();
