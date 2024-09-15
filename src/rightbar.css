@@ -10,6 +10,8 @@
 
 .infobar {
     display: grid;
+    background: white;
+    z-index: 5;
     grid-template-rows: 0.83fr 1fr;
     border-left: 1px solid var(--light-border-color);
     padding: 20px 20px 0px 10px;
@@ -145,7 +147,13 @@
     background: #BBBBBE40;
 }
 
-.todo-status.status-checked {
+.checked .task-name {
+    transition: 0.8s;
+    color: var(--active-color);
+    text-decoration: line-through;
+}
+
+.checked .todo-status {
     outline: 0;
     background-color: var(--active-color);
     background: url(./icons/checkmark.png);
@@ -154,9 +162,13 @@
 }
 
 .checked {
-    transition: 0.3s;
-    color: var(--active-color);
-    text-decoration: line-through;
+    background-color: #f0f0f0;
+    opacity: 0.5;
+}
+
+.task-element.checked:hover {
+    background-color: #f0f0f0;
+    opacity: 0.6;
 }
 
 .todo-status.status-checked:hover {
