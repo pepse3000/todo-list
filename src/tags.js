@@ -50,6 +50,10 @@ export const Tags = (function() {
     const createTag = function(array, tagName, color) {
         let newTag = { ...tagTemplate };
 
+        if (tagsArray.find(tag => tag.tagName.toLowerCase() == tagName.toLowerCase())) {
+            return;
+        }
+
         newTag.tagId = tagsArray.length + 1;
         newTag.tagName = tagName;
         newTag.color = color;
