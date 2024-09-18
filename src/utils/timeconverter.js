@@ -29,7 +29,6 @@ export const TimeConverter = (function() {
         
         let day = todayDate.getDate();
         let month = monthsList[todayDate.getMonth()];
-
         let year = todayDate.getYear();
 
         if (day == new Date().getDate() && month == monthsList[new Date().getMonth()]) {
@@ -65,10 +64,26 @@ export const TimeConverter = (function() {
         return monthsList[id];
     }
 
+    const getHourAndMinute = function(date) {
+        let hour = new Date(date).getHours();
+        let minute = new Date(date).getMinutes();
+
+        if (hour < 10) {
+            hour = `0${hour}`;
+        }
+
+        if (minute < 10) {
+            minute = `0${minute}`;
+        }
+
+        return `${hour}:${minute}`;
+    }
+
     return {
         convertStringToDate,
         convertDateToString,
         checkExpiryDate,
-        getMonthStr
+        getMonthStr,
+        getHourAndMinute
     }
 })();
