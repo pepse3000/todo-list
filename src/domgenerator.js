@@ -35,7 +35,9 @@ export const DOMSideGenerator = (function() {
                 projectName.innerText = project["projectName"];
 
                 projectNumber.classList.add("number");
-                projectNumber.innerText = project["assignedTasks"].length;
+                projectNumber.innerText = project["assignedTasks"].filter(task => Tasks.getTaskState(task) != "done").length;
+
+                console.log(project["assignedTasks"].filter(task => Tasks.getTaskState(task) != "done").length)
 
                 projectElement.appendChild(imgHolder);
                 projectElement.appendChild(projectName);
@@ -43,6 +45,8 @@ export const DOMSideGenerator = (function() {
 
                 projectContainer.appendChild(projectElement);
             });
+
+            ButtonAssigner.assignOpenProject(true);
         }
     });
 
@@ -66,8 +70,13 @@ export const DOMSideGenerator = (function() {
                 tagName.textContent = tag["tagName"];
 
                 tagNumber.classList.add("number");
-                tagNumber.textContent = tag["appendedProjects"].length + tag["appendedTasks"].length;
-                console.log(tag["appendedProjects"].length, tag["appendedTasks"].length);
+
+                let count = 0;
+                Tasks.tasksArray.forEach(task => {
+                    if (tag["appendedTasks"].includes(task["taskId"]) && task.status != "done") { count++ }
+                })
+                
+                tagNumber.textContent = count;
 
                 tagElement.appendChild(imgHolder);
                 tagElement.appendChild(tagName);
@@ -79,6 +88,7 @@ export const DOMSideGenerator = (function() {
 
         ButtonAssigner.assignShowCreateTagForm();
         ButtonAssigner.assignCreateNewTag();
+        
     });
 
     const createTodos = (function() {
@@ -167,7 +177,7 @@ export const DOMSideGenerator = (function() {
                 priorityDiv.classList.add("priority");
                 priorityDiv.title = "Priority";
 
-                if (task.priority == "high") {
+                if (task.priority == "max") {
                     priorityDiv.classList.add("max");
                     span.textContent = "!!";
                 } else if (task.priorty == "medium") {
@@ -191,10 +201,18 @@ export const DOMSideGenerator = (function() {
 
                 taskSubInfo.appendChild(priorityDiv);
                 taskSubInfo.appendChild(date);
-
                 todoElement.appendChild(taskSubInfo);
+                
                 todosContainer.appendChild(todoElement);
             })
+
+            if (document.querySelector(".todos-container").childElementCount == 0) {
+                let noTasks = document.createElement("div");
+                noTasks.classList.add("no-task");
+                noTasks.textContent = "There is no tasks! Great job!";
+                todosContainer.appendChild(noTasks); 
+            }
+
         }
     });
 
