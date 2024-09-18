@@ -124,6 +124,7 @@
 
 .todo-element p {
     margin: 5px 0px;
+    font-weight: 600;
     color: var(--black-text-color);
 }
 
