@@ -47,7 +47,11 @@ export const ButtonAssigner = (function() {
             event.preventDefault();
             let name = document.querySelector("#taskname").value;
             let priority = document.querySelector("input[name='priority']:checked").value;
-            console.log(priority)
+            let project;
+
+            if (document.querySelector("input[name='project']:checked")) {
+                project = document.querySelector("input[name='project']:checked").value;
+            }
 
             let tags = document.querySelectorAll("input[type='checkbox']:checked");
             let tagsNames = [];
@@ -59,7 +63,7 @@ export const ButtonAssigner = (function() {
             
             Tasks.createTask(
                 Tasks.tasksArray,
-                "",
+                project ? project : "",
                 name,
                 tagsNames,
                 priority,
@@ -72,16 +76,51 @@ export const ButtonAssigner = (function() {
             
             PageLocator.showInfo(".set-info", "open");
             DomUpdater.updateTodayList();
+            form.reset();
         })
     }
 
     const assignCompleteTask = function() {
         let allBtns = document.querySelectorAll(".todo-status");
-
+        
         allBtns.forEach(btn => {
+            if (btn.classList.contains("activity-done")) {
+                return;
+            }
+
             btn.addEventListener("click", e => {
-                Tasks.completeTask(e.target)
-                setTimeout(DomUpdater.updateTodayList, 1500);
+                Tasks.completeTask(e.target);
+                let taskId;
+
+                if (!e.target.parentElement.id) {
+                    taskId = e.target.parentElement.parentElement.id;
+                } else {
+                    taskId = e.target.parentElement.id;
+                }
+
+                let task = Tasks.tasksArray.find(task => {
+                    return +task.taskId == +taskId.slice(4);
+                });
+
+                Tags.tagsArray.forEach(tag => {
+                    let filteredArr = tag.appendedTasks.filter(appendTaskId => appendTaskId == task.taskId);
+                })
+
+                if (!btn.classList.contains("activity-done")) {
+                    setTimeout(DomUpdater.updateTodayList, 900);
+                }
+
+                
+                DomUpdater.updateTagsList();
+                setTimeout(() => PageLocator.showInfo(".undo-button" , "show"), 900);
+
+                let taskUndoName = document.querySelector(".task-undo-name");
+                if (task.taskName.length > 15) {
+                    taskUndoName.innerText = task.taskName.slice(0, 15) + "...";
+                } else {
+                    taskUndoName.innerText = task.taskName;
+                }
+                
         })
     })
     }
@@ -119,6 +158,76 @@ export const ButtonAssigner = (function() {
         })
     }
 
+    const assignUndoCompletedTask = function() {
+        let undoBtn = document.querySelector(".undo-btn");
+
+        undoBtn.addEventListener("click", () => {
+            PageLocator.showInfo(".undo-button", "");
+            Tasks.undoLastCompletedTask();
+            DomUpdater.updateTodayList();
+            DomUpdater.updateTagsList();
+        });
+    }
+
+    const assignUndoActivityTask = function() {
+        let allBtns = document.querySelectorAll(".activity-done");
+
+        allBtns.forEach(btn => {
+            btn.addEventListener("click", e => {
+                console.log("clicked")
+                Tasks.undoLastCompletedTask(e.target);
+                let taskId;
+
+                if (!e.target.parentElement.id) {
+                    taskId = e.target.parentElement.parentElement.id;
+                } else {
+                    taskId = e.target.parentElement.id;
+                }
+
+                let task = Tasks.tasksArray.find(task => {
+                    return +task.taskId == +taskId.slice(4);
+                });
+
+                setTimeout(DomUpdater.updateTodayList, 900);
+                DomUpdater.updateTagsList();
+            })
+        })
+    }
+
+    const assignOpenProject = function(status) {
+        
+        let allProjects = document.querySelectorAll(".project-folder");
+
+        allProjects.forEach(project => {
+            project.addEventListener("click", () => {
+                let projectId = project.id.slice(4);
+                PageLocator.openSingleProjectPage(Projects.getProjectById(projectId));
+            })
+        });
+
+        if (status) {
+            let btnsArray = document.querySelectorAll(".side-btn");
+            let sideProjects = document.querySelectorAll(".project-element");
+
+            sideProjects.forEach(project => {
+                project.addEventListener("click", () => {
+                    let projectId = project.id.slice(1);
+                    PageLocator.openSingleProjectPage(Projects.getProjectById(projectId));
+                    PageLocator.changeButtonActivityStatus(btnsArray, 4)
+                })
+            });
+
+            let allSmallProjectsBtns = document.querySelectorAll(".project-assign");
+            allSmallProjectsBtns.forEach(btn => {
+                btn.addEventListener("click", () => {
+                    let projectName = btn.textContent;
+                    let projectId = Projects.projectsArray.filter(project => project.projectName == projectName)[0].projectId;
+                    PageLocator.openSingleProjectPage(Projects.getProjectById(projectId));
+                })
+            })
+        }
+    }
+
     return { 
         assignMenuButtons, 
         assignShowSetInfo, 
@@ -126,6 +235,9 @@ export const ButtonAssigner = (function() {
         assignCreateNewTask,
         assignCompleteTask,
         assignShowCreateTagForm,
-        assignCreateNewTag
+        assignCreateNewTag,
+        assignUndoCompletedTask,
+        assignUndoActivityTask,
+        assignOpenProject,
      }
 })();
