@@ -23,7 +23,7 @@ body {
 
 .container {
     display: grid;
-    grid-template-columns: 1.5fr 3.3fr 2fr;
+    grid-template-columns: 1.25fr 3.3fr 1.8fr;
     grid-template-rows: 1fr;
 }
 
@@ -383,4 +383,64 @@ button:nth-child(5).active {
 .account-manager .icon-holder:hover {
     transition: 0.2s;
     opacity: 0.9;
+}
+
+/* no-task */
+.no-task {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    color: var(--low-opacity-text-color);
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.hide {
+    transition: 0.9s;
+    opacity: 0.5;
+    scale: 0.98;
+}
+
+/* undo button */
+
+.undo-button {
+    transition: 0.3s ease;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    right: 48%;
+    bottom: 40px;
+    color: white;
+    font-size: 14px;
+    font-weight: 700;
+    transition: 0.3s;
+    background: var(--active-color);
+    border-radius: 15px;
+    padding: 10px;
+}
+
+.undo-button button {
+    margin: 0;
+    padding: 0;
+    height: 30px;
+    background: 0;
+    border: 1px solid var(--light-border-color);
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 10px;
+    padding: 0px 10px;
+}
+
+.undo-button p {
+    margin: 0;
+    padding: 0;
+    color: #ffffff85;
+}
+
+.undo-button .task-undo-name {
+    color: white;
 }
