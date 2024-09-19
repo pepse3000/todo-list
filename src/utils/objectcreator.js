@@ -1,7 +1,7 @@
-import { Tasks } from "../tasks.js";
-import { Tags } from "../tags.js";
+import { Tasks } from "../classes/tasks.js";
+import { Tags } from "../classes/tags.js";
 import { TimeConverter } from "./timeconverter.js";
-import { Projects } from "../projects.js";
+import { Projects } from "../classes/projects.js";
 
 
 export const ObjectCreator = (function() {
@@ -458,7 +458,6 @@ export const ObjectCreator = (function() {
         projectSecondaryInformation.classList.add("project-secondary-information");
 
         // Main information
-        console.log(project.createdAt, project.dueDate);
         let infoNames = ["Created At", "Tags", "Priority", "Due Date"];
         let infoValues = [TimeConverter.convertDateToString(project.created), project.tags, project.priority, TimeConverter.convertDateToString(project.deadline)];
 

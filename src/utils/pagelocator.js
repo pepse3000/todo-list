@@ -1,11 +1,11 @@
-import { Projects } from "./projects.js";
-import { Tasks } from "./tasks.js";
-import { Tags } from "./tags.js";
+import { Projects } from "../classes/projects.js";
+import { Tasks } from "../classes/tasks.js";
+import { Tags } from "../classes/tags.js";
 import { DOMSideGenerator } from "./domgenerator.js";
-import { TimeConverter } from "./utils/timeconverter.js";
-import { ObjectCreator } from "./utils/objectcreator.js";
+import { TimeConverter } from "./timeconverter.js";
+import { ObjectCreator } from "./objectcreator.js";
 import { ButtonAssigner } from "./buttonassigner.js";
-import { DomUpdater } from "./utils/domupdater.js";
+import { DomUpdater } from "./domupdater.js";
 
 export const PageLocator = (function() {
     const tagsArray = Tags.tagsArray;

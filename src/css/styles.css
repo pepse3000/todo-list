@@ -57,7 +57,7 @@ body {
 .logo-holder {
     width: 40px;
     height: 40px;
-    background: url(./logo/logo.png);
+    background: url(../pngs/logo/logo.png);
     background-repeat: no-repeat;
     background-size: 100%;
 }
@@ -98,25 +98,25 @@ button {
 }
 
 button:nth-child(1) .icon-holder {
-    background: url(./icons/Category.png);
+    background: url(../pngs/icons/Category.png);
 }
 
 button:nth-child(2) .icon-holder {
-    background: url(./icons/Calendar.png);
+    background: url(../pngs/icons/Calendar.png);
     background-repeat: no-repeat;
 }
 
 button:nth-child(3) .icon-holder {
-    background: url(./icons/Paper.png);
+    background: url(../pngs/icons/Paper.png);
     background-repeat: no-repeat;
 }
 
 button:nth-child(4) .icon-holder {
-    background: url(./icons/Activity.png);
+    background: url(../pngs/icons/Activity.png);
 }
 
 button:nth-child(5) .icon-holder {
-    background: url(./icons/Folder.png);
+    background: url(../pngs/icons/Folder.png);
 }
 
 button:nth-child(5) {
@@ -125,32 +125,10 @@ button:nth-child(5) {
 
 /* Hover Background Change */
 
-/* button:nth-child(1):hover .icon-holder {
-    background: url(./icons/category-hover.png);
-}
-
-button:nth-child(2):hover .icon-holder {
-    background: url(./icons/calendar-hover.png);
-    background-repeat: no-repeat;
-}
-
-button:nth-child(3):hover .icon-holder {
-    background: url(./icons/paper-hover.png);
-    background-repeat: no-repeat;
-}
-
-button:nth-child(4):hover .icon-holder {
-    background: url(./icons/activity-hover.png);
-}
-
-button:nth-child(5):hover .icon-holder {
-    background: url(./icons/folder-hover.png);
-} */
-
 /* Active buttons config */
 
 button:nth-child(1).active .icon-holder {
-    background: url(./icons/category-hover.png);
+    background: url(../pngs/icons/category-hover.png);
 }
 
 button:nth-child(1).active {
@@ -159,7 +137,7 @@ button:nth-child(1).active {
 }
 
 button:nth-child(2).active .icon-holder {
-    background: url(./icons/calendar-hover.png);
+    background: url(../pngs/icons/calendar-hover.png);
     background-repeat: no-repeat;
 }
 
@@ -169,7 +147,7 @@ button:nth-child(2).active {
 }
 
 button:nth-child(3).active .icon-holder {
-    background: url(./icons/paper-hover.png);
+    background: url(../pngs/icons/paper-hover.png);
     background-repeat: no-repeat;
 }
 
@@ -179,7 +157,7 @@ button:nth-child(3).active {
 }
 
 button:nth-child(4).active .icon-holder {
-    background: url(./icons/activity-hover.png);
+    background: url(../pngs/icons/activity-hover.png);
     background-repeat: no-repeat;
 }
 
@@ -189,7 +167,7 @@ button:nth-child(4).active {
 }
 
 button:nth-child(5).active .icon-holder {
-    background: url(./icons/folder-hover.png);
+    background: url(../pngs/icons/folder-hover.png);
     background-repeat: no-repeat;
 }
 
@@ -364,7 +342,7 @@ button:nth-child(5).active {
     width: 60px;
     height: 60px;
     border-radius: 10px;
-    background: url(./avatar/avatar.png);
+    background: url(../pngs/avatar/avatar.png);
     background-size: 60px;
 }
 
@@ -373,7 +351,7 @@ button:nth-child(5).active {
 }
 
 .account-manager .icon-holder {
-    background: url(./icons/Setting.png);
+    background: url(../pngs/icons/Setting.png);
     opacity: 0.7;
     background-repeat: no-repeat;
     cursor: pointer;

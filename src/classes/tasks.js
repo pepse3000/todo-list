@@ -1,5 +1,5 @@
 import { Projects } from "./projects.js";
-import { TimeConverter } from "./utils/timeconverter.js";
+import { TimeConverter } from "../utils/timeconverter.js";
 import { Tags } from "./tags.js";
 
 export const Tasks = (function() {
@@ -97,41 +97,11 @@ export const Tasks = (function() {
             createTask(
                 tasksArray,          
                 1,                      
-                "Set up multiplayer",    
+                "Set up cool todo-list",    
                 ["Selfcare"], 
                 "medium",                          
                 TimeConverter.convertStringToDate("tomorrow"),            
                 "in_progress"             
-            );
-
-            createTask(
-                tasksArray,          
-                2,                      
-                "Set up multiplayer",    
-                ["Selfcare"], 
-                "medium",                          
-                TimeConverter.convertStringToDate("tomorrow"),            
-                "in_progress"             
-            );
-
-            createTask(
-                tasksArray,          
-                2,                      
-                "Set up multiplayer",    
-                ["Selfcare"], 
-                "medium",                          
-                TimeConverter.convertStringToDate("tomorrow"),            
-                "in_progress"             
-            );
-
-            createTask(
-                tasksArray,           
-                2,                      
-                "Get solution",    
-                ["Selfcare"], 
-                "high",                         
-                TimeConverter.convertStringToDate("today"),            
-                "open"             
             );
 
             createTask(
@@ -184,10 +154,7 @@ export const Tasks = (function() {
             return +task.taskId == +taskId.slice(4);
         });
 
-        console.log("TASKID", task.taskId);
-
         let projectWithTask = Projects.projectsArray.find(project => project.assignedTasks.includes(task.taskId));
-        console.log("PROJECT WITH TASK:", projectWithTask);
 
         if (projectWithTask) {
             projectWithTask.assignedTasks = projectWithTask.assignedTasks.filter(taskNum => taskNum != task.taskId);

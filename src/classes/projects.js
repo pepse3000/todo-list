@@ -1,23 +1,23 @@
-import avatar1 from './proj_avatars/1.png';
-import avatar2 from './proj_avatars/2.png';
-import avatar3 from './proj_avatars/3.png';
-import avatar4 from './proj_avatars/4.png';
-import avatar5 from './proj_avatars/5.png';
-import avatar6 from './proj_avatars/6.png';
-import avatar7 from './proj_avatars/7.png';
-import avatar8 from './proj_avatars/8.png';
-import avatar9 from './proj_avatars/9.png';
-import avatar10 from './proj_avatars/10.png';
+import avatar1 from '../pngs/proj_avatars/1.png';
+import avatar2 from '../pngs/proj_avatars/2.png';
+import avatar3 from '../pngs/proj_avatars/3.png';
+import avatar4 from '../pngs/proj_avatars/4.png';
+import avatar5 from '../pngs/proj_avatars/5.png';
+import avatar6 from '../pngs/proj_avatars/6.png';
+import avatar7 from '../pngs/proj_avatars/7.png';
+import avatar8 from '../pngs/proj_avatars/8.png';
+import avatar9 from '../pngs/proj_avatars/9.png';
+import avatar10 from '../pngs/proj_avatars/10.png';
 
-import gradient1 from './gradients/03.png';
-import gradient2 from './gradients/04.png';
-import gradient3 from './gradients/16.png';
-import gradient4 from './gradients/18.png';
-import gradient5 from './gradients/21.png';
-import gradient6 from './gradients/22.png';
-import gradient7 from './gradients/26.png';
-import gradient8 from './gradients/31.png';
-import gradient9 from './gradients/88.png';
+import gradient1 from '../pngs/gradients/03.png';
+import gradient2 from '../pngs/gradients/04.png';
+import gradient3 from '../pngs/gradients/16.png';
+import gradient4 from '../pngs/gradients/18.png';
+import gradient5 from '../pngs/gradients/21.png';
+import gradient6 from '../pngs/gradients/22.png';
+import gradient7 from '../pngs/gradients/26.png';
+import gradient8 from '../pngs/gradients/31.png';
+import gradient9 from '../pngs/gradients/88.png';
 
 export const Projects = (function() {
     let projectsArray = [];
@@ -135,28 +135,6 @@ export const Projects = (function() {
 
     const createFirstLoadProjects = (function() {
         if (!localStorage.getItem("projectsArray")) {
-            createProject(
-                projectsArray,
-                "Gamer Boy",
-                "A gaming project targeting young gamers",
-                ["Shopping"],
-                "high",
-                "Gamer Boy is an online multiplayer gaming platform designed to engage young gamers with a variety of mini-games and competitive tournaments.",
-                new Date(),
-                "2024-12-31",
-            );
-    
-            createProject(
-                projectsArray,
-                "Eco Solutions",
-                "A project focused on sustainable environmental solutions",
-                [],
-                "medium",
-                "Eco Friendly Solutions aims to develop and promote innovative solutions for reducing carbon footprint through green energy initiatives, recycling technologies, and environmental awareness programs.",
-                new Date(),
-                "2025-03-01",
-            )
-
             createProject(
                 projectsArray,
                 "Test Your Project!",

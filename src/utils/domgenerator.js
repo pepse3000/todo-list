@@ -1,9 +1,9 @@
-import { Projects } from "./projects.js";
-import { Tasks } from "./tasks.js";
-import { Tags } from "./tags.js";
-import { TimeConverter } from "./utils/timeconverter.js";
+import { Projects } from "../classes/projects.js";
+import { Tasks } from "../classes/tasks.js";
+import { Tags } from "../classes/tags.js";
+import { TimeConverter } from "./timeconverter.js";
 import { ButtonAssigner } from "./buttonassigner.js";
-import { DomUpdater } from "./utils/domupdater.js";
+import { DomUpdater } from "./domupdater.js";
 
 export const DOMSideGenerator = (function() {
     const projectsArray = Projects.projectsArray;
@@ -36,8 +36,6 @@ export const DOMSideGenerator = (function() {
 
                 projectNumber.classList.add("number");
                 projectNumber.innerText = project["assignedTasks"].filter(task => Tasks.getTaskState(task) != "done").length;
-
-                console.log(project["assignedTasks"].filter(task => Tasks.getTaskState(task) != "done").length)
 
                 projectElement.appendChild(imgHolder);
                 projectElement.appendChild(projectName);

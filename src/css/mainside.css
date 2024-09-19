@@ -31,7 +31,7 @@
 .main-header .icon-holder {
     width: 20px;
     height: 20px;
-    background: url(./icons/Category.png);
+    background: url(../pngs/icons/Category.png);
     background-size: cover;
 }
 
@@ -51,7 +51,7 @@
     width: 96vh;
     margin-top: 20px;
     height: 120px;
-    background: url(./gradients/big_gradient3.png);
+    background: url(../pngs/gradients/big_gradient3.png);
     background-size: 1000px;
     background-position: center;
     background-repeat: no-repeat;
@@ -138,7 +138,7 @@
 /* gradient-container */
 
 .gradient-container:nth-child(1) {
-    background: url(./gradients/Grad_01.png);
+    background: url(../pngs/gradients/Grad_01.png);
     background-size: contain;
     z-index: 0;
     position: absolute;
@@ -164,7 +164,7 @@
     position: absolute;
     right: 10px;
     opacity: 0.6;
-    background: url(./icons/trashbin.png);
+    background: url(../pngs/icons/trashbin.png);
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -274,14 +274,14 @@ form {
 }
 
 .tomorrow-btn {
-    background: url(./icons/tomorrow.png);
+    background: url(../pngs/icons/tomorrow.png);
     background-size: 15px;
     background-position: center;
     background-repeat: no-repeat;
 }
 
 .today-btn {
-    background: url(./icons/today.png);
+    background: url(../pngs/icons/today.png);
     background-size: 15px;
     background-position: center;
     background-repeat: no-repeat;
@@ -437,21 +437,21 @@ form {
 }
 
 .days7page .icon-holder {
-    background: url(./icons/Calendar.png);
+    background: url(../pngs/icons/Calendar.png);
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
 }
 
 .gradient-info.days7 {
-    background: url(./gradients/03.png);
+    background: url(../pngs/gradients/03.png);
     background-repeat: no-repeat;
     background-size: 1000px;
     margin-bottom: 20px;
 }
 
 .days7page .gradient-container:nth-child(1) {
-    background: url(./gradients/Grad_15.png);
+    background: url(../pngs/gradients/Grad_15.png);
     z-index: 0;
     bottom: 120px;
     transform: rotate(-30deg);
@@ -462,14 +462,14 @@ form {
 /* INBOX PAGE */
 
 .inbox {
-    background: url(./gradients/big_gradient7.png);
+    background: url(../pngs/gradients/big_gradient7.png);
     background-size: 1000px;
     background-position: bottom;
     background-repeat: no-repeat;
 }
 
 .inboxpage .icon-holder {
-    background: url(./icons/Paper.png);
+    background: url(../pngs/icons/Paper.png);
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -478,7 +478,7 @@ form {
 /* ACTIVITY PAGE */
 
 .activitypage .gradient-info {
-    background: url(./gradients/31.png);
+    background: url(../pngs/gradients/31.png);
     background-size: 1000px;
     background-position: bottom;
     background-repeat: no-repeat;
@@ -486,7 +486,7 @@ form {
 }
 
 .activitypage .gradient-container {
-    background: url(./gradients/Grad_04.png);
+    background: url(../pngs/gradients/Grad_04.png);
     background-size: cover;
     left: 10%;
 }
@@ -496,7 +496,7 @@ form {
 }
 
 .activitypage .icon-holder {
-    background: url(./icons/Activity.png);
+    background: url(../pngs/icons/Activity.png);
     background-size: cover;
 }
 
@@ -556,14 +556,14 @@ form {
     flex-shrink: 0;
     width: 50px;
     height: 50px;
-    background: url(./proj_avatars/10.png);
+    background: url(../pngs/proj_avatars/10.png);
     background-color: #1b1b1b;
     background-repeat: no-repeat;
     background-size: cover;
 }
 
 .project-gradient {
-    background: url(./gradients/big_gradient1.png);
+    background: url(../pngs/gradients/big_gradient1.png);
     background-size: 270px;
     background-repeat: no-repeat;
     width: 100%;
@@ -622,12 +622,12 @@ form {
 }
 
 .header:nth-child(1) .icon-holder {
-    background: url(./icons/projectfolder.png);
+    background: url(../pngs/icons/projectfolder.png);
     background-size: cover;
 }
 
 .header:nth-child(3) .icon-holder {
-    background: url(./icons/Time-Square.png);
+    background: url(../pngs/icons/Time-Square.png);
     background-size: cover;
     position: relative;
     top: -7px;
@@ -713,17 +713,17 @@ form {
 
 .info-row:nth-child(1) .icon-holder,
 .info-row:nth-child(4) .icon-holder  {
-    background: url(./icons/Time-Circle.png);
+    background: url(../pngs/icons/Time-Circle.png);
     background-size: cover;
 }
 
 .info-row:nth-child(2) .icon-holder {
-    background: url(./icons/Filter.png);
+    background: url(../pngs/icons/Filter.png);
     background-size: cover;
 }
 
 .info-row:nth-child(3) .icon-holder {
-    background: url(./icons/Star.png);
+    background: url(../pngs/icons/Star.png);
     background-size: cover;
 }
 

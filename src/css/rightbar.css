@@ -91,7 +91,7 @@
 .todos-header .icon-holder {
     width: 20px;
     height: 20px;
-    background: url(./icons/Category-1.png);
+    background: url(../pngs/icons/Category-1.png);
 }
 
 .todos-header p,
@@ -157,7 +157,7 @@
 .checked .todo-status {
     outline: 0;
     background-color: var(--active-color);
-    background: url(./icons/checkmark.png);
+    background: url(../pngs/icons/checkmark.png);
     background-size: contain;
     box-shadow: inset 0px 0px 0px 0px;
 }
@@ -175,7 +175,7 @@
 .todo-status.status-checked:hover {
     background-size: contain;
     background-color: var(--active-color);
-    background: url(./icons/checkmark.png);
+    background: url(../pngs/icons/checkmark.png);
     opacity: 0.7;
 }
 
@@ -292,7 +292,7 @@
 }
 
 .notes .icon-holder {
-    background: url(./icons/Edit-Square.png);
+    background: url(../pngs/icons/Edit-Square.png);
 }
 
 .note-element {
@@ -305,14 +305,14 @@
 }
 
 .note-element .icon-holder {
-    background: url(./icons/Paper.png);
+    background: url(../pngs/icons/Paper.png);
     background-repeat: no-repeat;
 }
 
 .icon-holder-settings {
     width: 40px;
     height: 15px;
-    background: url(./icons/dots.png);
+    background: url(../pngs/icons/dots.png);
     background-repeat: no-repeat;
     background-position: center;
     opacity: 0.7;

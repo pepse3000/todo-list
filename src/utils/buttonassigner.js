@@ -1,10 +1,10 @@
-import { Projects } from "./projects.js";
-import { Tasks } from "./tasks.js";
-import { Tags } from "./tags.js";
+import { Projects } from "../classes/projects.js";
+import { Tasks } from "../classes/tasks.js";
+import { Tags } from "../classes/tags.js";
 import { DOMSideGenerator } from "./domgenerator.js";
 import { PageLocator } from "./pagelocator.js";
-import { ObjectCreator } from "./utils/objectcreator.js";
-import { DomUpdater } from "./utils/domupdater.js";
+import { ObjectCreator } from "./objectcreator.js";
+import { DomUpdater } from "./domupdater.js";
 
 export const ButtonAssigner = (function() {
 
@@ -167,7 +167,6 @@ export const ButtonAssigner = (function() {
 
         allBtns.forEach(btn => {
             btn.addEventListener("click", e => {
-                console.log("clicked")
                 Tasks.undoLastCompletedTask(e.target);
                 let taskId;
 
@@ -225,12 +224,10 @@ export const ButtonAssigner = (function() {
 
     const assignDeleteTask = function() {
         let allBtns = document.querySelectorAll(".delete-btn");
-        console.log(allBtns)
         
         allBtns.forEach(btn => {
 
             btn.addEventListener("click", e => {
-                console.log("clicked tdeetele!")
                 let taskId;
 
                 if (!e.target.parentElement.id) {

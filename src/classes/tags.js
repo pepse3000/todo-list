@@ -1,4 +1,4 @@
-import { Projects } from "./projects";
+import { Projects } from "./projects.js";
 import { Tasks } from "./tasks.js";
 
 export const Tags = (function() {

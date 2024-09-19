@@ -1,14 +1,14 @@
-import "./styles.css";
-import "./rightbar.css";
-import "./mainside.css";
-import "./createDivs.css";
+import "./css/styles.css";
+import "./css/rightbar.css";
+import "./css/mainside.css";
+import "./css/createDivs.css";
 
-import { Projects } from "./projects.js";
-import { Tags } from "./tags.js";
-import { Tasks } from "./tasks.js";
-import { DOMSideGenerator } from "./domgenerator.js";
-import { PageLocator } from "./pagelocator.js";
-import { ButtonAssigner } from "./buttonassigner.js";
+import { Projects } from "./classes/projects.js";
+import { Tags } from "./classes/tags.js";
+import { Tasks } from "./classes/tasks.js";
+import { DOMSideGenerator } from "./utils/domgenerator.js";
+import { PageLocator } from "./utils/pagelocator.js";
+import { ButtonAssigner } from "./utils/buttonassigner.js";
 import { ObjectCreator } from "./utils/objectcreator.js";
 import { DomUpdater } from "./utils/domupdater.js";
 

@@ -1,9 +1,9 @@
-import { Tasks } from "../tasks";
-import { Tags } from "../tags.js";
-import { Projects } from "../projects.js";
+import { Tasks } from "../classes/tasks.js";
+import { Tags } from "../classes/tags.js";
+import { Projects } from "../classes/projects.js";
 import { ObjectCreator } from "./objectcreator.js";
-import { DOMSideGenerator } from "../domgenerator.js";
-import { ButtonAssigner } from "../buttonassigner.js";
+import { DOMSideGenerator } from "./domgenerator.js";
+import { ButtonAssigner } from "./buttonassigner.js";
 import { TimeConverter } from "./timeconverter.js";
 
 export const DomUpdater = (function() {
@@ -49,7 +49,6 @@ export const DomUpdater = (function() {
             todosListSide.innerHTML = "";
 
             let infoBars = document.querySelectorAll(".info");
-            console.log(TimeConverter.getHourAndMinute(Tasks.getLastTaskActivity(true)));
 
             DOMSideGenerator.createTodos();
             ButtonAssigner.assignCompleteTask();
@@ -137,7 +136,6 @@ export const DomUpdater = (function() {
                 if (tag["appendedTasks"].includes(task["taskId"]) && task.status != "done") { count++ }
             })
 
-            console.log(count);
             tagNumber.textContent = count;
 
             tagElement.appendChild(imgHolder);
