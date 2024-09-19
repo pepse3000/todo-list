@@ -444,3 +444,92 @@ button:nth-child(5).active {
 .undo-button .task-undo-name {
     color: white;
 }
+
+/* new project form */
+
+.sidebar-projects {
+    position: relative;
+}
+
+.new-project {
+    position: absolute;
+    display: flex;
+    gap: 15px;
+    font-size: 14px;
+    background: white;
+    border: 1px solid var(--light-border-color);
+    right: -400px;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.main-info {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+
+.new-project .priority-tags {
+    margin: 0;
+    padding: 0;
+}
+
+.new-project input[type=text] {
+    background: 0;
+    border: 1px solid white;
+    border-radius: 5px;
+}
+
+.new-project .tags-assigner {
+    width: 140px;
+}
+
+.new-project input[type=text]:focus {
+    outline: 0;
+    border: 1px solid var(--active-color);
+}
+
+.new-project input[type=date] {
+    margin: 0;
+    padding: 0;
+    border: 1px solid var(--active-color);
+}
+
+.new-project p:nth-child(4),
+.new-project p:nth-child(6) {
+    margin-bottom: 0;
+}
+
+.sub-info {
+    display: flex;
+    flex-direction: column;
+    align-items:flex-end;
+    justify-content: space-around;
+    gap: 5px;
+}
+
+.sub-info textarea {
+    border: 1px solid var(--light-border-color);
+    border-radius: 5px;
+    resize: none;
+    height: 120px;
+}
+
+.sub-info textarea:focus {
+    border: 1px solid var(--active-color);
+    outline: 0;
+}
+
+.sub-info input[type=submit] {
+    background: var(--active-color);
+    border: 0;
+    width: 100%;
+    border-radius: 5px;
+    color:#f0f0f3;
+    padding: 5px;
+}
+
+.sub-info input[type=submit]:hover {
+    cursor: pointer;
+    opacity: 0.9;
+}
