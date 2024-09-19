@@ -126,9 +126,12 @@ export const PageLocator = (function() {
         ButtonAssigner.assignCreateNewTask();
         ButtonAssigner.assignShowSetInfo();
         ButtonAssigner.assingSetInfoDayPickers();
-        ButtonAssigner.assignCompleteTask();
-        ButtonAssigner.assignOpenProject(true);
+
         DomUpdater.updateTodayList();
+        DOMSideGenerator.createTodos();
+        ButtonAssigner.assignCompleteTask();
+        ButtonAssigner.assignDeleteTask();
+        ButtonAssigner.assignOpenProject(true);
     }
 
     const openNext7DaysPage = function() {
@@ -197,8 +200,9 @@ export const PageLocator = (function() {
         changeButtonActivityStatus(btnsArray, 1);
         contentContainer.appendChild(todosList);
         mainContainer.appendChild(contentContainer);
-
+        DOMSideGenerator.createTodos();
         ButtonAssigner.assignOpenProject(true);
+        ButtonAssigner.assignDeleteTask();
         ButtonAssigner.assignCompleteTask();
     }
 
@@ -295,7 +299,10 @@ export const PageLocator = (function() {
         ButtonAssigner.assignCreateNewTask();
         ButtonAssigner.assignShowSetInfo();
         ButtonAssigner.assingSetInfoDayPickers();
+        
+        DOMSideGenerator.createTodos();
         ButtonAssigner.assignCompleteTask();
+        ButtonAssigner.assignDeleteTask();
         ButtonAssigner.assignOpenProject(true);
 
         changeButtonActivityStatus(btnsArray, 2);
@@ -364,8 +371,10 @@ export const PageLocator = (function() {
         contentContainer.appendChild(todosList);
         mainContainer.appendChild(contentContainer);
 
-        ButtonAssigner.assignCompleteTask();
         ButtonAssigner.assignUndoActivityTask();
+        DOMSideGenerator.createTodos();
+        ButtonAssigner.assignCompleteTask();
+        ButtonAssigner.assignDeleteTask();
         ButtonAssigner.assignOpenProject(true);
 
         changeButtonActivityStatus(btnsArray, 3);
@@ -420,24 +429,16 @@ export const PageLocator = (function() {
         mainContainer.appendChild(todosAndProjectsDiv);
 
         ButtonAssigner.assignUndoActivityTask();
+
+        DOMSideGenerator.createTodos();
         ButtonAssigner.assignCompleteTask();
-        ButtonAssigner.assignOpenProject();
+        ButtonAssigner.assignDeleteTask();
         ButtonAssigner.assignOpenProject(true);
 
         changeButtonActivityStatus(btnsArray, 4);
     }
 
-    const openCreateProjectPage = function() {
-        let mainContainer = document.querySelector(".main-container");
-        mainContainer.innerHTML = "";
-
-        let contentContainer = document.createElement("div");
-        contentContainer.classList.add("content-container", "create-project");
-    }
-
     const openSingleProjectPage = function(project) {
-        console.log(project);
-
         let mainContainer = document.querySelector(".main-container");
         mainContainer.innerHTML = "";
 
@@ -496,7 +497,6 @@ export const PageLocator = (function() {
         projectTextContent.appendChild(projectDescription);
         mainText.style.display = "flex";
         mainText.style.alignItems = "center";
-        mainText.style.justifyContent = "space-between";
         mainText.style.gap = "10px";
         mainText.appendChild(projectTextContent);
         gradientInfo.appendChild(mainText);
@@ -541,7 +541,7 @@ export const PageLocator = (function() {
         mainContainer.appendChild(projectTasksContainer);
         ButtonAssigner.assignUndoActivityTask();
         ButtonAssigner.assignCompleteTask();
-        ButtonAssigner.assignOpenProject(true);
+        ButtonAssigner.assignDeleteTask();
     }
 
     const changeButtonActivityStatus = function(btnsArray, id) {
@@ -589,13 +589,6 @@ export const PageLocator = (function() {
         }
     }
 
-
-    const showCreateTagForm = function(status) {
-        let createTagForm = document.querySelector(".new-tag");
-
-        
-    }
-
     return { 
         openTodayPage,
         openNext7DaysPage,
@@ -603,7 +596,6 @@ export const PageLocator = (function() {
         openActivityPage,
         openProjectsPage,
         openSingleProjectPage,
-        openCreateProjectPage,
         changeButtonActivityStatus,
         showInfo
      }
