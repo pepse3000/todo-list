@@ -7,13 +7,6 @@ import { ObjectCreator } from "./utils/objectcreator.js";
 import { DomUpdater } from "./utils/domupdater.js";
 
 export const ButtonAssigner = (function() {
-    const assignProjectButtons = function() {
-
-    }
-
-    const assignTagButtons = function() {
-
-    }
 
     const assignMenuButtons = function() {
         let allBtns = document.querySelectorAll(".side-btn");
@@ -206,17 +199,6 @@ export const ButtonAssigner = (function() {
         });
 
         if (status) {
-            let btnsArray = document.querySelectorAll(".side-btn");
-            let sideProjects = document.querySelectorAll(".project-element");
-
-            sideProjects.forEach(project => {
-                project.addEventListener("click", () => {
-                    let projectId = project.id.slice(1);
-                    PageLocator.openSingleProjectPage(Projects.getProjectById(projectId));
-                    PageLocator.changeButtonActivityStatus(btnsArray, 4)
-                })
-            });
-
             let allSmallProjectsBtns = document.querySelectorAll(".project-assign");
             allSmallProjectsBtns.forEach(btn => {
                 btn.addEventListener("click", () => {
@@ -226,6 +208,100 @@ export const ButtonAssigner = (function() {
                 })
             })
         }
+    }
+
+    const assignOpenProjectSide = function() {
+        let btnsArray = document.querySelectorAll(".side-btn");
+        let sideProjects = document.querySelectorAll(".project-element");
+
+        sideProjects.forEach(project => {
+            project.addEventListener("click", () => {
+                let projectId = project.id.slice(1);
+                PageLocator.openSingleProjectPage(Projects.getProjectById(projectId));
+                PageLocator.changeButtonActivityStatus(btnsArray, 4)
+            })
+        });
+    }
+
+    const assignDeleteTask = function() {
+        let allBtns = document.querySelectorAll(".delete-btn");
+        console.log(allBtns)
+        
+        allBtns.forEach(btn => {
+
+            btn.addEventListener("click", e => {
+                console.log("clicked tdeetele!")
+                let taskId;
+
+                if (!e.target.parentElement.id) {
+                    taskId = e.target.parentElement.parentElement.id;
+                } else {
+                    taskId = e.target.parentElement.id;
+                }
+
+                let task = Tasks.tasksArray.find(task => {
+                    return +task.taskId == +taskId.slice(4);
+                });
+                
+                let taskUndoName = document.querySelector(".task-undo-name");
+
+                
+                if (task.taskName.length > 15) {
+                    taskUndoName.innerText = task.taskName.slice(0, 15) + "...";
+                } else {
+                    taskUndoName.innerText = task.taskName;
+                }
+
+                Tasks.deleteTask(e.target);
+
+                DomUpdater.updateTagsList();
+
+                if (!btn.classList.contains("activity-done")) {
+                    setTimeout(DomUpdater.updateTodayList, 900);
+                }
+                
+        })
+    })
+    }
+
+    const assignOpenCreateProjectForm = function() {
+        let createProjectButton = document.querySelector("#add-project");
+
+        createProjectButton.addEventListener("click", () => PageLocator.showInfo(".new-project", ""));
+    }
+
+    const assignCreateNewProject = function() {
+        let form = document.querySelector(".new-project")
+
+        form.addEventListener("submit", (event) => {
+            event.preventDefault();
+            let name = document.querySelector("#projectname").value;
+            let priority = document.querySelector("input[name='priority']:checked");
+
+            let tags = document.querySelectorAll("input[type='checkbox']:checked");
+            let tagsNames = [];
+            tags.forEach(tag => {
+                tagsNames.push(tag.name);
+            })
+
+            let dueDate = document.querySelector("#date-proj").value;
+            let smallDesc = document.querySelector("#smallDesc").value;
+            let longDesc = document.querySelector("#longDesc").value;
+
+            Projects.createProject(
+                Projects.projectsArray,
+                name,
+                smallDesc,
+                tagsNames,
+                priority,
+                longDesc,
+                new Date(),
+                dueDate,
+            )
+            
+            PageLocator.showInfo(".new-project", "open");
+            DOMSideGenerator.createProjects();
+        })
     }
 
     return { 
@@ -239,5 +315,9 @@ export const ButtonAssigner = (function() {
         assignUndoCompletedTask,
         assignUndoActivityTask,
         assignOpenProject,
+        assignOpenProjectSide,
+        assignDeleteTask,
+        assignOpenCreateProjectForm,
+        assignCreateNewProject,
      }
 })();
