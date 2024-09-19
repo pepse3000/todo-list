@@ -46,7 +46,8 @@ export const DOMSideGenerator = (function() {
                 projectContainer.appendChild(projectElement);
             });
 
-            ButtonAssigner.assignOpenProject(true);
+
+            ButtonAssigner.assignOpenProjectSide();
         }
     });
 

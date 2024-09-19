@@ -134,6 +134,11 @@ export const ObjectCreator = (function() {
 
             taskElement.appendChild(date);
 
+            // Delete button
+            let deleteBtn = document.createElement("div");
+            deleteBtn.classList.add("delete-btn", "task-delete");
+            taskElement.appendChild(deleteBtn);
+
             todosList.appendChild(taskElement);
         })
 
@@ -221,6 +226,7 @@ export const ObjectCreator = (function() {
 
     const changeCalendarDay = function(day) {
         let calendar = document.querySelector("#date");
+        let calendarProject = document.querySelector("#date-proj");
 
         let date = new Date();
 
@@ -234,8 +240,10 @@ export const ObjectCreator = (function() {
         
         if (day == "today") {
             calendar.value = `${year}-${month}-${daynum}`;
+            calendarProject.value = `${year}-${month}-${daynum}`;
         } else {
             calendar.value = `${year}-${month}-${daynum + 1}`;
+            c
         }
         
     }
@@ -401,7 +409,12 @@ export const ObjectCreator = (function() {
         h4.textContent = project.projectName;
 
         let p = document.createElement("p");
-        p.textContent = project.small_desc;
+        if (project.small_desc.length > 22) {
+            p.textContent = project.small_desc.slice(0, 22) + "...";
+        } else {
+            p.textContent = project.small_desc;
+        }
+        
 
         let iconHolderSettings = document.createElement("div");
         iconHolderSettings.classList.add("icon-holder-settings");
@@ -430,13 +443,8 @@ export const ObjectCreator = (function() {
             });
         }
 
-
         projectFolder.appendChild(tagsList);
         return projectFolder;
-    }
-
-    const createProjectPage = function(project) {
-
     }
 
     const createProjectInfo = function(project) {
@@ -558,6 +566,8 @@ export const ObjectCreator = (function() {
         return projectInfo;
     }
 
+
+
     const createProjectTasks = function(projectId) {
 
         let filteredArray;
@@ -663,7 +673,12 @@ export const ObjectCreator = (function() {
                 date.classList.add("expiry");
             }
 
+            // Delete button
+            let deleteBtn = document.createElement("div");
+            deleteBtn.classList.add("delete-btn", "task-delete");
+
             taskElement.appendChild(date);
+            taskElement.appendChild(deleteBtn);
 
             todosList.appendChild(taskElement);
         })

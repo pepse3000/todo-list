@@ -22,6 +22,7 @@ export const DomUpdater = (function() {
 
             DOMSideGenerator.createTodos();
             ButtonAssigner.assignCompleteTask();
+            ButtonAssigner.assignDeleteTask();
             DOMSideGenerator.createProjects();
             return;
         }
@@ -37,6 +38,7 @@ export const DomUpdater = (function() {
             
             DOMSideGenerator.createTodos();
             ButtonAssigner.assignCompleteTask();
+            ButtonAssigner.assignDeleteTask();
             DOMSideGenerator.createProjects();
             return;
         }
@@ -51,6 +53,7 @@ export const DomUpdater = (function() {
 
             DOMSideGenerator.createTodos();
             ButtonAssigner.assignCompleteTask();
+            ButtonAssigner.assignDeleteTask();
             ButtonAssigner.assignUndoActivityTask();
 
             infoBars[0].textContent = String(Tasks.getLastTaskActivity(true)).length > 0 ? TimeConverter.getHourAndMinute(Tasks.getLastTaskActivity(true)) : "No activity";
@@ -66,6 +69,7 @@ export const DomUpdater = (function() {
             DOMSideGenerator.createTodos();
 
             ButtonAssigner.assignCompleteTask();
+            ButtonAssigner.assignDeleteTask();
             ButtonAssigner.assignUndoActivityTask();
             DOMSideGenerator.createProjects();
             return;
@@ -85,6 +89,7 @@ export const DomUpdater = (function() {
             infoBars[2].textContent = project["assignedTasks"].length;
 
             ButtonAssigner.assignCompleteTask();
+            ButtonAssigner.assignDeleteTask();
             ButtonAssigner.assignUndoActivityTask();
             DOMSideGenerator.createProjects();
             return;
@@ -101,6 +106,7 @@ export const DomUpdater = (function() {
         infoBars[1].textContent = Tasks.getCompletedTasks("today").length;
 
         DOMSideGenerator.createProjects();
+        ButtonAssigner.assignDeleteTask();
         updateTagsList();
         ButtonAssigner.assignCompleteTask();
     }
@@ -142,26 +148,28 @@ export const DomUpdater = (function() {
         })
 
         if (document.querySelector(".tags-assigner")) {
-            let tagsAssigner = document.querySelector(".tags-assigner");
-            tagsAssigner.innerHTML = "";
+            let tagsAssigner = document.querySelectorAll(".tags-assigner");
+            tagsAssigner.forEach(tagContainer => {
+                tagContainer.innerHTML = "";
+                Tags.tagsArray.forEach(tag => {
+                    let tagElement = document.createElement("input");
+                    let tagLabel = document.createElement("label");
+        
+                    tagElement.type = "checkbox";
+                    tagElement.id = tag.tagName;
+                    tagElement.name = tag.tagName;
+                    tagElement.value = tag.tagId;
+        
+                    tagLabel.htmlFor = tag.tagName;
+                    tagLabel.textContent = tag.tagName;
+                    tagLabel.style.background = `${tag.color}20`;
+                    tagLabel.style.color = tag.color;
+        
+                    tagContainer.appendChild(tagElement);
+                    tagContainer.appendChild(tagLabel);
+                })
+            });
     
-            Tags.tagsArray.forEach(tag => {
-                let tagElement = document.createElement("input");
-                let tagLabel = document.createElement("label");
-    
-                tagElement.type = "checkbox";
-                tagElement.id = tag.tagName;
-                tagElement.name = tag.tagName;
-                tagElement.value = tag.tagId;
-    
-                tagLabel.htmlFor = tag.tagName;
-                tagLabel.textContent = tag.tagName;
-                tagLabel.style.background = `${tag.color}20`;
-                tagLabel.style.color = tag.color;
-    
-                tagsAssigner.appendChild(tagElement);
-                tagsAssigner.appendChild(tagLabel);
-            })
         }
 
         Tags.saveToLocalStorage();

@@ -84,8 +84,8 @@ export const Projects = (function() {
     ) {
         let newProject = { ...projectTemplate };
 
-        if (projectName.length > 30) {
-            return "length>30";
+        if (projectName.length > 50) {
+            return "length>50";
         }
 
         newProject.projectName = projectName;
@@ -175,7 +175,8 @@ export const Projects = (function() {
     return { 
         createProject, 
         redactVariable, 
-        avatarBackgroundColors, 
+        avatarBackgroundColors,
+        avatarUrls,
         projectsArray,
         saveToLocalStorage,
         sortProjectsByTasks,

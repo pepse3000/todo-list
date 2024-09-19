@@ -15,9 +15,12 @@ import { DomUpdater } from "./utils/domupdater.js";
 DOMSideGenerator.createProjects();
 DOMSideGenerator.createTags();
 DOMSideGenerator.createTodos();
-// PageLocator.openTodayPage();
+
 ButtonAssigner.assignMenuButtons();
+PageLocator.openTodayPage();
 ButtonAssigner.assignCompleteTask();
 ButtonAssigner.assignUndoCompletedTask();
+ButtonAssigner.assignOpenCreateProjectForm();
+ButtonAssigner.assignCreateNewProject();
 ObjectCreator.createNewTagInput();
 
