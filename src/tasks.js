@@ -50,16 +50,6 @@ export const Tasks = (function() {
         saveToLocalStorage();
     }
 
-    // const appendTasksFirstLoad = function() {
-    //     tasksArray.forEach(task => {
-    //         let project = projectArray.find(proj => proj.projectId === task.appendProjectId);
-
-    //         if (project && !project.assignedTasks.includes(task)) {
-    //             project.assignedTasks.push(task);
-    //         }
-    //     });
-    // };
-
     const saveToLocalStorage = function() {
         localStorage.setItem("tasksArray", JSON.stringify(tasksArray));
     }
@@ -181,6 +171,37 @@ export const Tasks = (function() {
         saveToLocalStorage();
     }
 
+    const deleteTask = function(taskElement) {
+        let taskId = "";
+
+        if (!taskElement.parentElement.id) {
+            taskId = taskElement.parentElement.parentElement.id;
+        } else {
+            taskId = taskElement.parentElement.id;
+        }
+
+        let task = tasksArray.find(task => {
+            return +task.taskId == +taskId.slice(4);
+        });
+
+        console.log("TASKID", task.taskId);
+
+        let projectWithTask = Projects.projectsArray.find(project => project.assignedTasks.includes(task.taskId));
+        console.log("PROJECT WITH TASK:", projectWithTask);
+
+        if (projectWithTask) {
+            projectWithTask.assignedTasks = projectWithTask.assignedTasks.filter(taskNum => taskNum != task.taskId);
+            Projects.saveToLocalStorage();
+        }
+
+        tasksArray.splice(tasksArray.findIndex(task => task.taskId == +taskId.slice(4)), 1);
+
+        let taskDom = document.querySelectorAll(`#${taskId}`);
+        taskDom.forEach(task => task.classList.add("deleted", "hide"));
+
+        saveToLocalStorage();
+    }
+
     const undoLastCompletedTask = function(taskElement) {
         if (taskElement) {
             let taskId = "";
@@ -234,12 +255,14 @@ export const Tasks = (function() {
     }
 
     const getTaskState = function(taskId) {
-        return tasksArray.filter(task => task.taskId == +taskId)[0].status;
+        return tasksArray.filter(task => task.taskId == +taskId).status;
     }
+
     return { 
         tasksArray, 
         createFirstLoadTasks,  
         createTask, 
+        deleteTask,
         saveToLocalStorage,
         getCompletedTasks,
         getUncompletedTasks,
