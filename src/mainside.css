@@ -156,7 +156,25 @@
 
 .task-element .date {
     position: absolute;
-    right: 30px;
+    right: 45px;
+}
+
+/* delete button */
+.task-element .delete-btn {
+    position: absolute;
+    right: 10px;
+    opacity: 0.6;
+    background: url(./icons/trashbin.png);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 20px;
+    height: 20px;
+}
+
+.task-element .delete-btn:hover {
+    cursor: pointer;
+    opacity: 0.8;
 }
 
 /* task create form */
@@ -626,6 +644,12 @@ form {
     color: #1b1b1b;
 }
 
+.single-project .main-text {
+    display: grid;
+    align-items: center;
+    justify-content: left;
+}
+
 .single-project .project-info {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -718,6 +742,8 @@ form {
 
 .description-content {
     color: var(--dark-gray-text-color);
+    overflow-wrap: break-word;
+    width: 25rem;
 }
 
 /* project tasks */
@@ -743,5 +769,11 @@ form {
 
 .project-tasks .task-element:hover {
     background-color: #f7f7f7;
+}
+
+/* Deleted */
+
+.task-element.deleted{
+    background: #ff686830;
 }
 
